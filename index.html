@@ -2,10 +2,16 @@
 <html>
 <body>
 
+<script>
+function myFunction() {
+  document.getElementById('demo').innerHTML = Date()
+}
+</script>
+  
 <h1>My First JavaScript</h1>
 
 <button type="button"
-onclick="document.getElementById('demo').innerHTML = Date()">
+onclick=myFunction()>
 Click me to display Date and Time.</button>
 
 <p id="demo"></p>
