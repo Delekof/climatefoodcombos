@@ -23,22 +23,50 @@ function calculateProteinPerKcal(data) {
   }
 }
 
+var slider1 = document.getElementById("proteinRange");
+var output1 = document.getElementById("proteinRDA");
+output1.innerHTML = slider1.value; // Display the default slider value
+slider1.oninput = function() {
+  output1.innerHTML = this.value;
+}
+
+var slider2 = document.getElementById("calorieRange");
+var output2 = document.getElementById("calorieRDA");
+output2.innerHTML = slider2.value; // Display the default slider value
+slider2.oninput = function() {
+  output2.innerHTML = this.value;
+}
+
+var slider3 = document.getElementById("emptycalorieRange");
+var output3 = document.getElementById("emptycalorieRDA");
+output3.innerHTML = slider3.value; // Display the default slider value
+slider3.oninput = function() {
+  output3.innerHTML = this.value;
+}
+
 // Calculate protein_per_kcal for each food item
 calculateProteinPerKcal(nutritional_data);
 </script>
   
-<h1>My First JavaScript</h1>
+<h1>Climate food combos</h1>
+
+.slidecontainer {
+  width: 100%; /* Width of the outside container */
+}
 
 <div class="slidecontainer">
   <input type="range" min="50" max="200" value="120" class="slider" id="proteinRange">
+  <p>Value: <span id="proteinRDA"></span></p>
 </div>
 
 <div class="slidecontainer">
   <input type="range" min="2000" max="3500" value="3000" class="slider" id="calorieRange">
+  <p>Value: <span id="calorieRDA"></span></p>
 </div>
 
 <div class="slidecontainer">
   <input type="range" min="0" max="2000" value="1200" class="slider" id="emptycalorieRange">
+  <p>Value: <span id="emptycalorieRDA"></span></p>
 </div>
 
 <button type="button"
