@@ -23,27 +23,6 @@ function calculateProteinPerKcal(data) {
   }
 }
 
-var slider1 = document.getElementById("proteinRange");
-var output1 = document.getElementById("proteinRDA");
-output1.innerHTML = slider1.value; // Display the default slider value
-slider1.oninput = function() {
-  output1.innerHTML = this.value;
-}
-
-var slider2 = document.getElementById("calorieRange");
-var output2 = document.getElementById("calorieRDA");
-output2.innerHTML = slider2.value; // Display the default slider value
-slider2.oninput = function() {
-  output2.innerHTML = this.value;
-}
-
-var slider3 = document.getElementById("emptycalorieRange");
-var output3 = document.getElementById("emptycalorieRDA");
-output3.innerHTML = slider3.value; // Display the default slider value
-slider3.oninput = function() {
-  output3.innerHTML = this.value;
-}
-
 // Calculate protein_per_kcal for each food item
 calculateProteinPerKcal(nutritional_data);
 </script>
@@ -64,6 +43,29 @@ calculateProteinPerKcal(nutritional_data);
   <input type="range" min="0" max="2000" value="1200" class="slider" id="emptycalorieRange">
   <p>Value: <span id="emptycalorieRDA"></span></p>
 </div>
+
+<script>
+  var slider1 = document.getElementById("proteinRange");
+  var output1 = document.getElementById("proteinRDA");
+  output1.innerHTML = slider1.value; // Display the default slider value
+  slider1.oninput = function() {
+    output1.innerHTML = this.value;
+  }
+
+  var slider2 = document.getElementById("calorieRange");
+  var output2 = document.getElementById("calorieRDA");
+  output2.innerHTML = slider2.value; // Display the default slider value
+  slider2.oninput = function() {
+    output2.innerHTML = this.value;
+  }
+
+  var slider3 = document.getElementById("emptycalorieRange");
+  var output3 = document.getElementById("emptycalorieRDA");
+  output3.innerHTML = slider3.value; // Display the default slider value
+  slider3.oninput = function() {
+    output3.innerHTML = this.value;
+  }
+</script>
 
 <button type="button"
 onclick=myFunction()>
