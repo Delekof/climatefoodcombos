@@ -7,7 +7,7 @@
 <script>
 
 function myFunction() {
-  document.getElementById('demo1').innerHTML = Date()
+  document.getElementById('demo1').innerHTML = proteinFoods
 }
 
 function myFunction2() {
@@ -31,17 +31,17 @@ calculateProteinPerKcal(nutritional_data);
 
 <div class="slidecontainer">
   <input type="range" min="50" max="200" value="120" class="slider" id="proteinRange">
-  <p>Value: <span id="proteinRDA"></span></p>
+  <p>Protein supply: <span id="proteinRDA"></span></p>
 </div>
 
 <div class="slidecontainer">
   <input type="range" min="2000" max="3500" value="3000" class="slider" id="calorieRange">
-  <p>Value: <span id="calorieRDA"></span></p>
+  <p>Calorie supply: <span id="calorieRDA"></span></p>
 </div>
 
 <div class="slidecontainer">
   <input type="range" min="0" max="2000" value="1200" class="slider" id="emptycalorieRange">
-  <p>Value: <span id="emptycalorieRDA"></span></p>
+  <p>Calories from fruit,veg,added sugars, added oils/fats, and alcohol: <span id="emptycalorieRDA"></span></p>
 </div>
 
 <script>
@@ -69,13 +69,13 @@ calculateProteinPerKcal(nutritional_data);
 
 <button type="button"
 onclick=myFunction()>
-Click me to display Date and Time.</button>
+Click me to display protein foods* (*animals are friends not food).</button>
 
 <p id="demo1"></p>
   
 <button type="button"
 onclick=myFunction2()>
-Click me to display Date and Time.</button>
+Click me to display carbohydrate foods.</button>
 
 <p id="demo2"></p>
 
