@@ -293,6 +293,103 @@ const data_dict = {
     },
   },
 };
+
+const nutritional_data = {
+  Bread: {
+    protein: 9, // per 100g
+    kcal: 265, // per 100g
+  },
+  Maize: {
+    protein: 9, // per 100g
+    kcal: 365, // per 100g
+  },
+  Barley: {
+    protein: 2, // per 100ml (beer)
+    kcal: 43, // per 100ml (beer)
+  },
+  Oatmeal: {
+    protein: 13, // per 100g
+    kcal: 389, // per 100g
+  },
+  Rice: {
+    protein: 7, // per 100g
+    kcal: 130, // per 100g (cooked)
+  },
+  Potatoes: {
+    protein: 2, // per 100g
+    kcal: 77, // per 100g (cooked)
+  },
+  Cassava: {
+    protein: 1, // per 100g
+    kcal: 160, // per 100g
+  },
+  Other_Pulses: {
+    protein: 8, // per 100g (cooked mixed pulses)
+    kcal: 114, // per 100g (cooked mixed pulses)
+  },
+  Peas: {
+    protein: 5, // per 100g (cooked)
+    kcal: 81, // per 100g (cooked)
+  },
+  Nuts: {
+    protein: 21, // per 100g (mixed nuts)
+    kcal: 607, // per 100g (mixed nuts)
+  },
+  Groundnuts: {
+    protein: 25, // per 100g
+    kcal: 567, // per 100g
+  },
+  Tofu: {
+    protein: 8, // per 100g
+    kcal: 76, // per 100g
+  },
+  Beef: {
+    protein: 26, // per 100g (cooked)
+    kcal: 250, // per 100g (cooked)
+  },
+  Lamb: {
+    protein: 25, // per 100g (cooked)
+    kcal: 294, // per 100g (cooked)
+  },
+  Pig_Meat: {
+    protein: 21, // per 100g (cooked)
+    kcal: 242, // per 100g (cooked)
+  },
+  Poultry_Meat: {
+    protein: 27, // per 100g (cooked)
+    kcal: 239, // per 100g (cooked)
+  },
+  Cheese: {
+    protein: 25, // per 100g
+    kcal: 402, // per 100g
+  },
+  Eggs: {
+    protein: 13, // per 100g
+    kcal: 155, // per 100g
+  },
+  Fish_farmed: {
+    protein: 20, // per 100g (salmon, farmed)
+    kcal: 208, // per 100g (salmon, farmed)
+  },
+  Crustaceans_farmed: {
+    protein: 24, // per 100g (shrimp)
+    kcal: 99, // per 100g (shrimp)
+  },
+};
+
+// Function to calculate and insert protein_per_kcal
+function calculateProteinPerKcal(data) {
+  for (let food in data) {
+    let protein = data[food].protein;
+    let kcal = data[food].kcal;
+    data[food].protein_per_kcal = parseFloat((protein / kcal).toFixed(2));
+  }
+}
+
+// Calculate protein_per_kcal for each food item
+calculateProteinPerKcal(nutritional_data);
+
+console.log(nutritional_data);
 </script>
   
 <h1>My First JavaScript</h1>
