@@ -4,11 +4,11 @@
 
 <script>
 function myFunction() {
-  document.getElementById('demo').innerHTML = Date()
+  document.getElementById('demo1').innerHTML = Date()
 }
 
 function myFunction2() {
-  document.getElementById('demo').innerHTML = Date()+1
+  document.getElementById('demo2').innerHTML = Date()+1
 }
 </script>
   
@@ -17,12 +17,14 @@ function myFunction2() {
 <button type="button"
 onclick=myFunction()>
 Click me to display Date and Time.</button>
+
+<p id="demo1"></p>
   
 <button type="button"
 onclick=myFunction2()>
 Click me to display Date and Time.</button>
 
-<p id="demo"></p>
+<p id="demo2"></p>
 
 </body>
 </html> 
