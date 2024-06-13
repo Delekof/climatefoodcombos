@@ -111,13 +111,31 @@
     updateEmptyCalorieSupply();
   }
 
+  proteinInput.addEventListener("keydown", function(event) {
+    if (event.keyCode === 13) {
+      this.blur();
+    }
+  });
+
+  calorieInput.addEventListener("keydown", function(event) {
+    if (event.keyCode === 13) {
+      this.blur();
+    }
+  });
+
+  emptycalorieInput.addEventListener("keydown", function(event) {
+    if (event.keyCode === 13) {
+      this.blur();
+    }
+  });
+
   function calculateProteinRatio(proteinFood, carbFood, kappa) {
     let kappac = nutritional_data.carbFood.protein_per_kcal*4
     let kappap = nutritional_data.proteinFood.protein_per_kcal*4
     return (kappa - kappac)/(kappap - kappac)
   }
 
-  console.log(calculateProteinPerKcal("Tofu", "Bread", (100 * 4 * proteinRange.value / (calorieRange.value - emptycalorieRange.value)).toFixed(2)))
+  console.log(calculateProteinRatio("Tofu", "Bread", (100 * 4 * proteinRange.value / (calorieRange.value - emptycalorieRange.value)).toFixed(2)))
 
   // Ensure external data is processed correctly
   calculateProteinPerKcal(nutritional_data);
