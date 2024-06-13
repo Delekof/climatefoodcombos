@@ -45,7 +45,7 @@ calculateProteinPerKcal(nutritional_data);
 </div>
 
 <div>
-  <p>Calorie supply from protein: <span id="proteinpercalorieSupply"></span></p>
+  <p>Calories supply from protein: <span id="proteinpercalorieSupply"></span></p>
 </div>
 
 <script>
@@ -62,19 +62,19 @@ calculateProteinPerKcal(nutritional_data);
   output3.innerHTML = slider3.value; // Display the default slider value
 
   var protein_per_kcal_supply = document.getElementById("proteinpercalorieSupply")
-  protein_per_kcal_supply.innerHTML = (4*slider1.value/(slider2.value-slider3.value)).toFixed(2)
+  protein_per_kcal_supply.innerHTML = (100*4*slider1.value/(slider2.value-slider3.value)).toFixed(2)%
 
   slider1.oninput = function() {
     output1.innerHTML = this.value;
-    protein_per_kcal_supply.innerHTML = (4*slider1.value/(slider2.value-slider3.value)).toFixed(2)
+    protein_per_kcal_supply.innerHTML = (100*4*slider1.value/(slider2.value-slider3.value)).toFixed(2)%
   }
   slider2.oninput = function() {
     output2.innerHTML = this.value;
-    protein_per_kcal_supply.innerHTML = (4*slider1.value/(slider2.value-slider3.value)).toFixed(2)
+    protein_per_kcal_supply.innerHTML = (100*4*slider1.value/(slider2.value-slider3.value)).toFixed(2)%
   }
   slider3.oninput = function() {
     output3.innerHTML = this.value;
-    protein_per_kcal_supply.innerHTML = (4*slider1.value/(slider2.value-slider3.value)).toFixed(2)
+    protein_per_kcal_supply.innerHTML = (100*4*slider1.value/(slider2.value-slider3.value)).toFixed(2)%
   }
 </script>
 
