@@ -21,21 +21,18 @@
   <p>Protein supply:</p>
   <input type="range" min="50" max="200" value="120" class="slider" id="proteinRange">
   <input type="number" min="50" max="200" value="120" id="proteinInput">
-  <span id="proteinRDA"></span>
 </div>
 
 <div class="slidecontainer">
   <p>Calorie supply:</p>
   <input type="range" min="2000" max="3500" value="3000" class="slider" id="calorieRange">
   <input type="number" min="2000" max="3500" value="3000" id="calorieInput">
-  <span id="calorieRDA"></span>
 </div>
 
 <div class="slidecontainer">
   <p>"Empty" calories:</p>
   <input type="range" min="0" max="2000" value="1200" class="slider" id="emptycalorieRange">
   <input type="number" min="0" max="2000" value="1200" id="emptycalorieInput">
-  <span id="emptycalorieRDA"></span>
 </div>
 
 <div>
@@ -73,37 +70,28 @@
 
   var proteinRange = document.getElementById("proteinRange");
   var proteinInput = document.getElementById("proteinInput");
-  var proteinRDA = document.getElementById("proteinRDA");
 
   var calorieRange = document.getElementById("calorieRange");
   var calorieInput = document.getElementById("calorieInput");
-  var calorieRDA = document.getElementById("calorieRDA");
 
   var emptycalorieRange = document.getElementById("emptycalorieRange");
   var emptycalorieInput = document.getElementById("emptycalorieInput");
-  var emptycalorieRDA = document.getElementById("emptycalorieRDA");
 
   var proteinPerCalorieSupply = document.getElementById("proteinpercalorieSupply");
 
-  proteinRDA.innerHTML = proteinRange.value;
-  calorieRDA.innerHTML = calorieRange.value;
-  emptycalorieRDA.innerHTML = emptycalorieRange.value;
   proteinPerCalorieSupply.innerHTML = String((100 * 4 * proteinRange.value / (calorieRange.value - emptycalorieRange.value)).toFixed(2)) + "%";
 
   function updateProteinSupply() {
-    proteinRDA.innerHTML = proteinRange.value;
     proteinInput.value = proteinRange.value;
     updateProteinPerCalorieSupply();
   }
 
   function updateCalorieSupply() {
-    calorieRDA.innerHTML = calorieRange.value;
     calorieInput.value = calorieRange.value;
     updateProteinPerCalorieSupply();
   }
 
   function updateEmptyCalorieSupply() {
-    emptycalorieRDA.innerHTML = emptycalorieRange.value;
     emptycalorieInput.value = emptycalorieRange.value;
     updateProteinPerCalorieSupply();
   }
