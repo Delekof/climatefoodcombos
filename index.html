@@ -117,7 +117,7 @@
     return (kappa - kappac)/(kappap - kappac)
   }
 
-  console.log(calculateProteinPerKcal("Tofu", "Bread", parseFloat(proteinPerCalorieSupply.innerHTML)))
+  console.log(calculateProteinPerKcal("Tofu", "Bread", (100 * 4 * proteinRange.value / (calorieRange.value - emptycalorieRange.value)).toFixed(2)))
 
   // Ensure external data is processed correctly
   calculateProteinPerKcal(nutritional_data);
