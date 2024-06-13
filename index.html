@@ -111,6 +111,14 @@
     updateEmptyCalorieSupply();
   }
 
+  function calculateProteinRatio(proteinFood, carbFood, kappa) {
+    let kappac = nutritional_data.carbFood.protein_per_kcal*4
+    let kappap = nutritional_data.proteinFood.protein_per_kcal*4
+    return (kappa - kappac)/(kappap - kappac)
+  }
+
+  console.log(calculateProteinPerKcal("Tofu", "Bread", parseFloat(proteinPerCalorieSupply.innerHTML)))
+
   // Ensure external data is processed correctly
   calculateProteinPerKcal(nutritional_data);
 
