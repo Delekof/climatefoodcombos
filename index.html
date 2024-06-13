@@ -41,29 +41,40 @@ calculateProteinPerKcal(nutritional_data);
 
 <div class="slidecontainer">
   <input type="range" min="0" max="2000" value="1200" class="slider" id="emptycalorieRange">
-  <p>Calories from fruit,veg,added sugars, added oils/fats, and alcohol: <span id="emptycalorieRDA"></span></p>
+  <p>"Empty" calories: <span id="emptycalorieRDA"></span></p>
+</div>
+
+<div>
+  <p>Protein per calorie supply: <span id="proteinpercalorieSupply"></span></p>
 </div>
 
 <script>
   var slider1 = document.getElementById("proteinRange");
   var output1 = document.getElementById("proteinRDA");
   output1.innerHTML = slider1.value; // Display the default slider value
-  slider1.oninput = function() {
-    output1.innerHTML = this.value;
-  }
 
   var slider2 = document.getElementById("calorieRange");
   var output2 = document.getElementById("calorieRDA");
   output2.innerHTML = slider2.value; // Display the default slider value
-  slider2.oninput = function() {
-    output2.innerHTML = this.value;
-  }
 
   var slider3 = document.getElementById("emptycalorieRange");
   var output3 = document.getElementById("emptycalorieRDA");
   output3.innerHTML = slider3.value; // Display the default slider value
+
+  var protein_per_kcal_supply = document.getElementById("proteinpercalorieSupply")
+  protein_per_kcal_supply.innerHTML = (slider1.value/(slider2.value-slider3.value)).toFixed(2)
+
+  slider1.oninput = function() {
+    output1.innerHTML = this.value;
+    protein_per_kcal_supply.innerHTML = (slider1.value/(slider2.value-slider3.value)).toFixed(2)
+  }
+  slider2.oninput = function() {
+    output2.innerHTML = this.value;
+    protein_per_kcal_supply.innerHTML = (slider1.value/(slider2.value-slider3.value)).toFixed(2)
+  }
   slider3.oninput = function() {
     output3.innerHTML = this.value;
+    protein_per_kcal_supply.innerHTML = (slider1.value/(slider2.value-slider3.value)).toFixed(2)
   }
 </script>
 
