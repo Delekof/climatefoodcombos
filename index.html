@@ -32,13 +32,13 @@
 </div>
 
 <button type="button" onclick="displayProteinFoods()">
-  Click me to display protein foods* (*animals are friends not food).
+  Click me to display how much of your calories should come from tofu.
 </button>
 
 <p id="demo1"></p>
 
 <button type="button" onclick="displayCarbFoods()">
-  Click me to display carbohydrate foods.
+  Click me to display how much of your calories should come from bread.
 </button>
 
 <p id="demo2"></p>
@@ -53,11 +53,13 @@
   }
 
   function displayProteinFoods() {
-    document.getElementById('demo1').innerHTML = JSON.stringify(proteinFoods, null, 2);
+    let proteinRatio = calculateProteinRatio("Tofu", "Bread", (proteinRange.value / (calorieRange.value - emptycalorieRange.value)))
+    document.getElementById('demo1').innerHTML = String((100*proteinRatio).toFixed(0))+"%";
   }
 
   function displayCarbFoods() {
-    document.getElementById('demo2').innerHTML = JSON.stringify(carbFoods, null, 2);
+    let carbRatio = 1 - calculateProteinRatio("Tofu", "Bread", (proteinRange.value / (calorieRange.value - emptycalorieRange.value)))
+    document.getElementById('demo2').innerHTML = String((100*carbRatio).toFixed(0))+"%";
   }
 
   var proteinRange = document.getElementById("proteinRange");
@@ -126,14 +128,14 @@
   emptycalorieInput.addEventListener("keydown", function(event) {
     if (event.keyCode === 13) {
       this.blur();
-      console.log(calculateProteinRatio("Tofu", "Bread", (4 * proteinRange.value / (calorieRange.value - emptycalorieRange.value))))
     }
   });
 
   function calculateProteinRatio(proteinFood, carbFood, kappa) {
     let kappac = nutritional_data[carbFood].protein_per_kcal
     let kappap = nutritional_data[proteinFood].protein_per_kcal
-    return ((kappa - kappac)/(kappap - kappac)).toFixed(2)
+    console.log(kappac, kappap, kappa)
+    return ((kappa - kappac)/(kappap - kappac))
   }
 
   // Ensure external data is processed correctly
