@@ -1,33 +1,12 @@
 <!DOCTYPE html>
 <html>
+<head>
+  <title>Climate Food Combos</title>
+  <script src="https://cdn.jsdelivr.net/gh/Delekof/climatefoodcombos/data.js"></script>
+</head>
 <body>
 
-
-<script src="https://cdn.jsdelivr.net/gh/Delekof/climatefoodcombos/data.js"></script>
-<script>
-
-function myFunction() {
-  document.getElementById('demo1').innerHTML = proteinFoods
-}
-
-function myFunction2() {
-  document.getElementById('demo2').innerHTML = carbFoods
-}
-  
-// Function to calculate and insert protein_per_kcal
-function calculateProteinPerKcal(data) {
-  for (let food in data) {
-    let protein = data[food].protein;
-    let kcal = data[food].kcal;
-    data[food].protein_per_kcal = parseFloat((protein / kcal).toFixed(2));
-  }
-}
-
-// Calculate protein_per_kcal for each food item
-calculateProteinPerKcal(nutritional_data);
-</script>
-  
-<h1>Climate food combos</h1>
+<h1>Climate Food Combos</h1>
 
 <div class="slidecontainer">
   <p>Protein supply: <span id="proteinRDA"></span></p>
@@ -48,7 +27,35 @@ calculateProteinPerKcal(nutritional_data);
   <p>Calories supply from protein: <span id="proteinpercalorieSupply"></span></p>
 </div>
 
+<button type="button" onclick="displayProteinFoods()">
+  Click me to display protein foods* (*animals are friends not food).
+</button>
+
+<p id="demo1"></p>
+
+<button type="button" onclick="displayCarbFoods()">
+  Click me to display carbohydrate foods.
+</button>
+
+<p id="demo2"></p>
+
 <script>
+  function calculateProteinPerKcal(data) {
+    for (let food in data) {
+      let protein = data[food].protein;
+      let kcal = data[food].kcal;
+      data[food].protein_per_kcal = parseFloat((protein / kcal).toFixed(2));
+    }
+  }
+
+  function displayProteinFoods() {
+    document.getElementById('demo1').innerHTML = JSON.stringify(proteinFoods, null, 2);
+  }
+
+  function displayCarbFoods() {
+    document.getElementById('demo2').innerHTML = JSON.stringify(carbFoods, null, 2);
+  }
+
   var slider1 = document.getElementById("proteinRange");
   var output1 = document.getElementById("proteinRDA");
   output1.innerHTML = slider1.value; // Display the default slider value
@@ -61,34 +68,28 @@ calculateProteinPerKcal(nutritional_data);
   var output3 = document.getElementById("emptycalorieRDA");
   output3.innerHTML = slider3.value; // Display the default slider value
 
-  var protein_per_kcal_supply = document.getElementById("proteinpercalorieSupply")
-  protein_per_kcal_supply.innerHTML = String((100*4*slider1.value/(slider2.value-slider3.value)).toFixed(2))+"%"
+  var protein_per_kcal_supply = document.getElementById("proteinpercalorieSupply");
+  protein_per_kcal_supply.innerHTML = String((100 * 4 * slider1.value / (slider2.value - slider3.value)).toFixed(2)) + "%";
 
   slider1.oninput = function() {
     output1.innerHTML = this.value;
-    protein_per_kcal_supply.innerHTML = String((100*4*slider1.value/(slider2.value-slider3.value)).toFixed(2))+"%"
+    protein_per_kcal_supply.innerHTML = String((100 * 4 * slider1.value / (slider2.value - slider3.value)).toFixed(2)) + "%";
   }
+
   slider2.oninput = function() {
     output2.innerHTML = this.value;
-    protein_per_kcal_supply.innerHTML = String((100*4*slider1.value/(slider2.value-slider3.value)).toFixed(2))+"%"
+    protein_per_kcal_supply.innerHTML = String((100 * 4 * slider1.value / (slider2.value - slider3.value)).toFixed(2)) + "%";
   }
+
   slider3.oninput = function() {
     output3.innerHTML = this.value;
-    protein_per_kcal_supply.innerHTML = String((100*4*slider1.value/(slider2.value-slider3.value)).toFixed(2))+"%"
+    protein_per_kcal_supply.innerHTML = String((100 * 4 * slider1.value / (slider2.value - slider3.value)).toFixed(2)) + "%";
   }
+
+  // Ensure external data is processed correctly
+  calculateProteinPerKcal(nutritional_data);
+
 </script>
 
-<button type="button"
-onclick=myFunction()>
-Click me to display protein foods* (*animals are friends not food).</button>
-
-<p id="demo1"></p>
-  
-<button type="button"
-onclick=myFunction2()>
-Click me to display carbohydrate foods.</button>
-
-<p id="demo2"></p>
-
 </body>
-</html> 
+</html>
