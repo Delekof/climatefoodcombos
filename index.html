@@ -96,17 +96,17 @@
   calorieRange.oninput = updateCalorieSupply;
   emptycalorieRange.oninput = updateEmptyCalorieSupply;
 
-  proteinInput.oninput = function() {
+  proteinInput.onblur = function() {
     proteinRange.value = this.value;
     updateProteinSupply();
   }
 
-  calorieInput.oninput = function() {
+  calorieInput.onblur = function() {
     calorieRange.value = this.value;
     updateCalorieSupply();
   }
 
-  emptycalorieInput.oninput = function() {
+  emptycalorieInput.onblur = function() {
     emptycalorieRange.value = this.value;
     updateEmptyCalorieSupply();
   }
