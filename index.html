@@ -126,18 +126,18 @@
   emptycalorieInput.addEventListener("keydown", function(event) {
     if (event.keyCode === 13) {
       this.blur();
-      calculateProteinRatio(nutritional_data)
+      console.log(calculateProteinRatio("Tofu", "Bread", (4 * proteinRange.value / (calorieRange.value - emptycalorieRange.value))))
     }
   });
 
   function calculateProteinRatio(proteinFood, carbFood, kappa) {
-    let kappac = nutritional_data[carbFood]
-    console.log(kappac)
-    let kappap = nutritional_data[proteinFood]
-    console.log(kappap)
-    return kappap
-    // return (kappa - kappac)/(kappap - kappac)
+    let kappac = nutritional_data[carbFood].protein_per_kcal
+    let kappap = nutritional_data[proteinFood].protein_per_kcal
+    return ((kappa - kappac)/(kappap - kappac)).toFixed(2)
   }
+
+  // Ensure external data is processed correctly
+  calculateProteinPerKcal(nutritional_data);
 
 </script>
 
