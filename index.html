@@ -130,8 +130,8 @@
   });
 
   function calculateProteinRatio(proteinFood, carbFood, kappa) {
-    let kappac = nutritional_data.carbFood.protein_per_kcal*4
-    let kappap = nutritional_data.proteinFood.protein_per_kcal*4
+    let kappac = nutritional_data[carbFood].protein_per_kcal*4
+    let kappap = nutritional_data[proteinFood].protein_per_kcal*4
     return (kappa - kappac)/(kappap - kappac)
   }
 
