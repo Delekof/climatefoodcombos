@@ -7,14 +7,30 @@ function calculateProteinPerKcal(data) {
     data[food].protein_per_kcal = parseFloat((protein / kcal).toFixed(2));
   }
 }
-
 // Ensure external data is processed correctly before any other operations
 calculateProteinPerKcal(nutritional_data);
+
+function calculateEmissionsPerKcal(data) {
+  for (let food in data) {
+    let emissions = data_dict[food].emissions.median;
+    if (data_dict[food].FU == "1000kcal"){
+      data[food].emissions_per_kcal = parseFloat((emissions / 1000).toFixed(5));
+    } else if (data_dict[food].FU == "100g protein"){
+      data[food].emissions_per_kcal = parseFloat((data[food].protein_per_kcal*emissions / 100).toFixed(5));
+    }
+  }
+  console.log(data);
+}
+calculateEmissionsPerKcal(nutritional_data);
 
 function calculateProteinRatio(proteinFood, carbFood, kappa) {
   let kappac = nutritional_data[carbFood].protein_per_kcal;
   let kappap = nutritional_data[proteinFood].protein_per_kcal;
-  return ((kappa - kappac) / (kappap - kappac));
+  if (kappap>kappac){
+    return ((kappa - kappac) / (kappap - kappac));
+  } else {
+    return ((kappa - kappap) / (kappac - kappap));
+  }
 }
 
 function displayProteinFoods() {
@@ -41,7 +57,7 @@ function displayProteinFoods() {
       let cell = row.insertCell();
       let proteinRatio = calculateProteinRatio(proteinFood, carbFood, kappa);
 
-      if (isNaN(proteinRatio) || Math.abs(proteinRatio) > 1) {
+      if (isNaN(proteinRatio) || proteinRatio > 1) {
         cell.textContent = "F";
         cell.style.backgroundColor = `rgba(123, 123, 123,1)`;
       } else if (proteinRatio < 0) {
@@ -94,6 +110,7 @@ function updateFruitVegSupply() {
 
 function updateProteinPerCalorieSupply() {
   proteinPerCalorieSupply.innerHTML = String((100 * 4 * (proteinRange.value - fruitVegRange.value*5/400) / (calorieRange.value - emptycalorieRange.value - fruitVegRange.value)).toFixed(2)) + "%";
+  displayProteinFoods();
 }
 
 proteinRange.oninput = updateProteinSupply;
@@ -199,10 +216,8 @@ function setPreset(preset) {
   fruitVegRange.value = selectedPreset.fruitVeg;
   fruitVegInput.value = selectedPreset.fruitVeg;
 
-  wasteRange.value = selectedPreset.waste;
-  wasteInput.value = selectedPreset.waste;
-
   updateProteinPerCalorieSupply();
+  displayProteinFoods();
 }
 
 // Initial display on page load

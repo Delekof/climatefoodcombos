@@ -1,5 +1,6 @@
 const data_dict = {
   Bread: {
+    FU: "100g protein",
     land_use: {
       lower: 1.1,
       mean: 3.9,
@@ -14,6 +15,7 @@ const data_dict = {
     },
   },
   Corn: {
+    FU: "1000kcal",
     land_use: {
       lower: 1.1,
       mean: 2.9,
@@ -28,6 +30,7 @@ const data_dict = {
     },
   },
   Barley: {
+    FU: "1000kcal",
     land_use: {
       lower: 0.3,
       mean: 1.1,
@@ -42,6 +45,7 @@ const data_dict = {
     },
   },
   Oats: {
+    FU: "1000kcal",
     land_use: {
       lower: 2.9,
       mean: 7.6,
@@ -56,6 +60,7 @@ const data_dict = {
     },
   },
   Rice: {
+    FU: "1000kcal",
     land_use: {
       lower: 1.1,
       mean: 2.8,
@@ -70,6 +75,7 @@ const data_dict = {
     },
   },
   Potatoes: {
+    FU: "1000kcal",
     land_use: {
       lower: 0.4,
       mean: 0.9,
@@ -84,6 +90,7 @@ const data_dict = {
     },
   },
   Cassava: {
+    FU: "1000kcal",
     land_use: {
       lower: 0.8,
       mean: 1.8,
@@ -98,6 +105,7 @@ const data_dict = {
     },
   },
   "Mixed Pulses": {
+    FU: "100g protein",
     land_use: {
       lower: 9.9,
       mean: 15.6,
@@ -112,6 +120,7 @@ const data_dict = {
     },
   },
   Peas: {
+    FU: "100g protein",
     land_use: {
       lower: 2.8,
       mean: 7.5,
@@ -126,6 +135,7 @@ const data_dict = {
     },
   },
   "Mixed Nuts": {
+    FU: "100g protein",
     land_use: {
       lower: 4.5,
       mean: 13.0,
@@ -140,6 +150,7 @@ const data_dict = {
     },
   },
   Peanuts: {
+    FU: "100g protein",
     land_use: {
       lower: 4.7,
       mean: 9.1,
@@ -154,6 +165,7 @@ const data_dict = {
     },
   },
   Tofu: {
+    FU: "100g protein",
     land_use: {
       lower: 1.8,
       mean: 3.5,
@@ -168,6 +180,7 @@ const data_dict = {
     },
   },
   Beef: {
+    FU: "100g protein",
     land_use: {
       lower: 82.8,
       mean: 326.2,
@@ -182,6 +195,7 @@ const data_dict = {
     },
   },
   Lamb: {
+    FU: "100g protein",
     land_use: {
       lower: 60.1,
       mean: 369.8,
@@ -196,6 +210,7 @@ const data_dict = {
     },
   },
   Pork: {
+    FU: "100g protein",
     land_use: {
       lower: 7.8,
       mean: 17.4,
@@ -210,6 +225,7 @@ const data_dict = {
     },
   },
   Chicken: {
+    FU: "100g protein",
     land_use: {
       lower: 6.7,
       mean: 12.2,
@@ -224,6 +240,7 @@ const data_dict = {
     },
   },
   Cheese: {
+    FU: "100g protein",
     land_use: {
       lower: 9.6,
       mean: 87.8,
@@ -238,6 +255,7 @@ const data_dict = {
     },
   },
   Eggs: {
+    FU: "100g protein",
     land_use: {
       lower: 4.4,
       mean: 6.3,
@@ -252,6 +270,7 @@ const data_dict = {
     },
   },
   "Farmed Fish": {
+    FU: "100g protein",
     land_use: {
       lower: 0.8,
       mean: 8.4,
@@ -266,6 +285,7 @@ const data_dict = {
     },
   },
   "Farmed Shrimp": {
+    FU: "100g protein",
     land_use: {
       lower: 0.6,
       mean: 3.0,
