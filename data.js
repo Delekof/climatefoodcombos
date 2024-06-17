@@ -13,7 +13,7 @@ const data_dict = {
       upper: 2.3,
     },
   },
-  Maize: {
+  Corn: {
     land_use: {
       lower: 1.1,
       mean: 2.9,
@@ -41,7 +41,7 @@ const data_dict = {
       upper: 1.6,
     },
   },
-  Oatmeal: {
+  Oats: {
     land_use: {
       lower: 2.9,
       mean: 7.6,
@@ -97,7 +97,7 @@ const data_dict = {
       upper: 2.1,
     },
   },
-  Other_Pulses: {
+  "Mixed Pulses": {
     land_use: {
       lower: 9.9,
       mean: 15.6,
@@ -125,7 +125,7 @@ const data_dict = {
       upper: 1.7,
     },
   },
-  Nuts: {
+  "Mixed Nuts": {
     land_use: {
       lower: 4.5,
       mean: 13.0,
@@ -139,7 +139,7 @@ const data_dict = {
       upper: 3.8,
     },
   },
-  Groundnuts: {
+  Peanuts: {
     land_use: {
       lower: 4.7,
       mean: 9.1,
@@ -195,7 +195,7 @@ const data_dict = {
       upper: 54.4,
     },
   },
-  Pig_Meat: {
+  Pork: {
     land_use: {
       lower: 7.8,
       mean: 17.4,
@@ -209,7 +209,7 @@ const data_dict = {
       upper: 22.3,
     },
   },
-  Poultry_Meat: {
+  Chicken: {
     land_use: {
       lower: 6.7,
       mean: 12.2,
@@ -251,7 +251,7 @@ const data_dict = {
       upper: 8.4,
     },
   },
-  Fish_farmed: {
+  "Farmed Fish": {
     land_use: {
       lower: 0.8,
       mean: 8.4,
@@ -265,7 +265,7 @@ const data_dict = {
       upper: 26.5,
     },
   },
-  Crustaceans_farmed: {
+  "Farmed Shrimp": {
     land_use: {
       lower: 0.6,
       mean: 3.0,
@@ -286,7 +286,7 @@ const nutritional_data = {
     protein: 9.4, // per 100g
     kcal: 265, // per 100g
   },
-  Maize: {
+  Corn: {
     protein: 9.42, // per 100g
     kcal: 365, // per 100g
   },
@@ -294,7 +294,7 @@ const nutritional_data = {
     protein: 2.3, // per 100g (beer)
     kcal: 43, // per 100g (beer)
   },
-  Oatmeal: {
+  Oats: {
     protein: 16.89, // per 100g
     kcal: 389, // per 100g
   },
@@ -310,7 +310,7 @@ const nutritional_data = {
     protein: 1.36, // per 100g
     kcal: 160, // per 100g
   },
-  Other_Pulses: {
+  "Mixed Pulses": {
     protein: 7.63, // per 100g (cooked mixed pulses)
     kcal: 114, // per 100g (cooked mixed pulses)
   },
@@ -318,11 +318,11 @@ const nutritional_data = {
     protein: 5.42, // per 100g (cooked)
     kcal: 81, // per 100g (cooked)
   },
-  Nuts: {
+  "Mixed Nuts": {
     protein: 20.99, // per 100g (mixed nuts)
     kcal: 607, // per 100g (mixed nuts)
   },
-  Groundnuts: {
+  Peanuts: {
     protein: 25.8, // per 100g
     kcal: 567, // per 100g
   },
@@ -338,11 +338,11 @@ const nutritional_data = {
     protein: 25.6, // per 100g (cooked)
     kcal: 282, // per 100g (cooked)
   },
-  Pig_Meat: {
+  Pork: {
     protein: 21.43, // per 100g (cooked)
     kcal: 242, // per 100g (cooked)
   },
-  Poultry_Meat: {
+  Chicken: {
     protein: 25.98, // per 100g (cooked)
     kcal: 239, // per 100g (cooked)
   },
@@ -354,11 +354,11 @@ const nutritional_data = {
     protein: 12.58, // per 100g
     kcal: 155, // per 100g
   },
-  Fish_farmed: {
+  "Farmed Fish": {
     protein: 18.76, // per 100g (salmon, farmed)
     kcal: 206, // per 100g (salmon, farmed)
   },
-  Crustaceans_farmed: {
+  "Farmed Shrimp": {
     protein: 20.03, // per 100g (shrimp)
     kcal: 83, // per 100g (shrimp)
   },
@@ -367,25 +367,26 @@ const nutritional_data = {
 const proteinFoods = [
   "Beef",
   "Lamb",
-  "Pig_Meat",
-  "Poultry_Meat",
-  "Fish_farmed",
-  "Crustaceans_farmed",
-  "Tofu",
+  "Farmed Shrimp",
   "Cheese",
+  "Farmed Fish",
+  "Pork",
+  "Chicken",
   "Eggs",
-  "Nuts",
-  "Groundnuts",
-  "Other_Pulses",
-  "Peas"
+  "Peanuts",
+  "Tofu",
+  "Mixed Pulses",
+  "Peas",
+  "Mixed Nuts"
 ];
 
 const carbFoods = [
   "Bread",
-  "Maize",
+  "Corn",
   "Barley",
-  "Oatmeal",
+  "Oats",
   "Rice",
   "Potatoes",
   "Cassava"
 ];
+

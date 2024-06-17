@@ -22,9 +22,21 @@
 </div>
 
 <div class="slidecontainer">
+  <p>Fruit/Veg supply:</p>
+  <input type="range" min="0" max="1000" value="300" class="slider" id="fruitVegRange">
+  <input type="number" min="0" max="1000" value="300" id="fruitVegInput">
+</div>
+
+<div class="slidecontainer">
   <p>"Empty" calories:</p>
-  <input type="range" min="0" max="2000" value="1200" class="slider" id="emptycalorieRange">
-  <input type="number" min="0" max="2000" value="1200" id="emptycalorieInput">
+  <input type="range" min="0" max="2000" value="900" class="slider" id="emptycalorieRange">
+  <input type="number" min="0" max="2000" value="900" id="emptycalorieInput">
+</div>
+
+<div class="slidecontainer">
+  <p>Waste:</p>
+  <input type="range" min="0" max="50" value="10" class="slider" id="wasteRange">
+  <input type="number" min="0" max="50" value="10" id="wasteInput">
 </div>
 
 <div>
@@ -32,17 +44,20 @@
 </div>
 
 <button type="button" onclick="displayProteinFoods()">
-  Click me to display how much of your calories should come from tofu.
+  Click me to update the ratio of protein foods to carb foods.
 </button>
 
-<p id="demo1"></p>
-
-<button type="button" onclick="displayCarbFoods()">
-  Click me to display how much of your calories should come from bread.
-</button>
-
-<p id="demo2"></p>
+<table id="ratiosTable">
+  <thead>
+    <tr id="carbHeaderRow">
+      <th>Protein/Carb</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
 
 <script src="script.js"></script>
 </body>
 </html>
+

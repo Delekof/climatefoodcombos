@@ -1,106 +1,172 @@
+// Assuming nutritional_data is already defined and imported
+
 function calculateProteinPerKcal(data) {
-    for (let food in data) {
-      let protein = data[food].protein;
-      let kcal = data[food].kcal;
-      data[food].protein_per_kcal = parseFloat((protein / kcal).toFixed(2));
-    }
+  for (let food in data) {
+    let protein = data[food].protein;
+    let kcal = data[food].kcal;
+    data[food].protein_per_kcal = parseFloat((protein / kcal).toFixed(2));
   }
-  
-  function displayProteinFoods() {
-    let proteinRatio = calculateProteinRatio("Tofu", "Bread", (proteinRange.value / (calorieRange.value - emptycalorieRange.value)));
-    document.getElementById('demo1').innerHTML = String((100 * proteinRatio).toFixed(0)) + "%";
+}
+
+// Ensure external data is processed correctly before any other operations
+calculateProteinPerKcal(nutritional_data);
+
+function calculateProteinRatio(proteinFood, carbFood, kappa) {
+  let kappac = nutritional_data[carbFood].protein_per_kcal;
+  let kappap = nutritional_data[proteinFood].protein_per_kcal;
+  if (kappac>kappap){
+    return 1-((kappa - kappap) / (kappac - kappap));
   }
-  
-  function displayCarbFoods() {
-    let carbRatio = 1 - calculateProteinRatio("Tofu", "Bread", (proteinRange.value / (calorieRange.value - emptycalorieRange.value)));
-    document.getElementById('demo2').innerHTML = String((100 * carbRatio).toFixed(0)) + "%";
-  }
-  
-  var proteinRange = document.getElementById("proteinRange");
-  var proteinInput = document.getElementById("proteinInput");
-  
-  var calorieRange = document.getElementById("calorieRange");
-  var calorieInput = document.getElementById("calorieInput");
-  
-  var emptycalorieRange = document.getElementById("emptycalorieRange");
-  var emptycalorieInput = document.getElementById("emptycalorieInput");
-  
-  var proteinPerCalorieSupply = document.getElementById("proteinpercalorieSupply");
-  
-  proteinPerCalorieSupply.innerHTML = String((100 * 4 * proteinRange.value / (calorieRange.value - emptycalorieRange.value)).toFixed(2)) + "%";
-  
-  function updateProteinSupply() {
-    proteinInput.value = proteinRange.value;
-    updateProteinPerCalorieSupply();
-  }
-  
-  function updateCalorieSupply() {
-    calorieInput.value = calorieRange.value;
-    updateProteinPerCalorieSupply();
-  }
-  
-  function updateEmptyCalorieSupply() {
-    emptycalorieInput.value = emptycalorieRange.value;
-    updateProteinPerCalorieSupply();
-  }
-  
-  function updateProteinPerCalorieSupply() {
-    proteinPerCalorieSupply.innerHTML = String((100 * 4 * proteinRange.value / (calorieRange.value - emptycalorieRange.value)).toFixed(2)) + "%";
-  }
-  
-  proteinRange.oninput = debounce(updateProteinSupply, 300);
-  calorieRange.oninput = debounce(updateCalorieSupply, 300);
-  emptycalorieRange.oninput = debounce(updateEmptyCalorieSupply, 300);
-  
-  proteinInput.onblur = function() {
-    proteinRange.value = this.value;
-    updateProteinSupply();
-  };
-  
-  calorieInput.onblur = function() {
-    calorieRange.value = this.value;
-    updateCalorieSupply();
-  };
-  
-  emptycalorieInput.onblur = function() {
-    emptycalorieRange.value = this.value;
-    updateEmptyCalorieSupply();
-  };
-  
-  proteinInput.addEventListener("keydown", function(event) {
-    if (event.keyCode === 13) {
-      this.blur();
-    }
-  });
-  
-  calorieInput.addEventListener("keydown", function(event) {
-    if (event.keyCode === 13) {
-      this.blur();
-    }
-  });
-  
-  emptycalorieInput.addEventListener("keydown", function(event) {
-    if (event.keyCode === 13) {
-      this.blur();
-    }
-  });
-  
-  function calculateProteinRatio(proteinFood, carbFood, kappa) {
-    let kappac = nutritional_data[carbFood].protein_per_kcal;
-    let kappap = nutritional_data[proteinFood].protein_per_kcal;
-    console.log(kappac, kappap, kappa);
+  else {
     return ((kappa - kappac) / (kappap - kappac));
   }
-  
-  // Debounce function to limit the rate at which a function can fire
-  function debounce(func, wait) {
-    let timeout;
-    return function(...args) {
-      clearTimeout(timeout);
-      timeout = setTimeout(() => func.apply(this, args), wait);
-    };
+}
+
+function displayProteinFoods() {
+  let kappa = (proteinRange.value / (calorieRange.value - emptycalorieRange.value - fruitVegRange.value - wasteRange.value));
+  let tableBody = document.querySelector('#ratiosTable tbody');
+  let carbHeaderRow = document.getElementById('carbHeaderRow');
+
+  tableBody.innerHTML = ''; // Clear previous rows
+
+  // Clear and rebuild the header row
+  carbHeaderRow.innerHTML = '<th>Protein/Carb</th>';
+  carbFoods.forEach(carbFood => {
+    let th = document.createElement('th');
+    th.textContent = carbFood;
+    carbHeaderRow.appendChild(th);
+  });
+
+  proteinFoods.forEach(proteinFood => {
+    let row = tableBody.insertRow();
+    let cell1 = row.insertCell(0);
+    cell1.textContent = proteinFood;
+
+    carbFoods.forEach(carbFood => {
+      let cell = row.insertCell();
+      let proteinRatio = calculateProteinRatio(proteinFood, carbFood, kappa);
+
+      if (isNaN(proteinRatio) || proteinRatio < 0 || proteinRatio > 1) {
+        cell.textContent = "n.a.";
+        cell.style.backgroundColor = `rgba(123, 123, 123,1)`;
+      } else {
+        cell.textContent = String((100 * proteinRatio).toFixed(0)) + "%";
+        let colorValue = Math.round(proteinRatio * 100);
+        cell.style.backgroundColor = `rgba(0, 123, 107, ${colorValue / 100})`; // Greenish color
+      }
+    });
+  });
+}
+
+var proteinRange = document.getElementById("proteinRange");
+var proteinInput = document.getElementById("proteinInput");
+
+var calorieRange = document.getElementById("calorieRange");
+var calorieInput = document.getElementById("calorieInput");
+
+var emptycalorieRange = document.getElementById("emptycalorieRange");
+var emptycalorieInput = document.getElementById("emptycalorieInput");
+
+var fruitVegRange = document.getElementById("fruitVegRange");
+var fruitVegInput = document.getElementById("fruitVegInput");
+
+var wasteRange = document.getElementById("wasteRange");
+var wasteInput = document.getElementById("wasteInput");
+
+var proteinPerCalorieSupply = document.getElementById("proteinpercalorieSupply");
+
+proteinPerCalorieSupply.innerHTML = String((100 * 4 * (proteinRange.value - fruitVegRange.value*5/400) / ((calorieRange.value - emptycalorieRange.value - fruitVegRange.value))).toFixed(2)) + "%";
+
+function updateProteinSupply() {
+  proteinInput.value = proteinRange.value;
+  updateProteinPerCalorieSupply();
+}
+
+function updateCalorieSupply() {
+  calorieInput.value = calorieRange.value;
+  updateProteinPerCalorieSupply();
+}
+
+function updateEmptyCalorieSupply() {
+  emptycalorieInput.value = emptycalorieRange.value;
+  updateProteinPerCalorieSupply();
+}
+
+function updateFruitVegSupply() {
+  fruitVegInput.value = fruitVegRange.value;
+  updateProteinPerCalorieSupply();
+}
+
+function updateWasteSupply() {
+  wasteInput.value = wasteRange.value;
+  updateProteinPerCalorieSupply();
+}
+
+function updateProteinPerCalorieSupply() {
+  proteinPerCalorieSupply.innerHTML = String((100 * 4 * (proteinRange.value - fruitVegRange.value*5/400) / (calorieRange.value - emptycalorieRange.value - fruitVegRange.value)).toFixed(2)) + "%";
+}
+
+proteinRange.oninput = updateProteinSupply;
+calorieRange.oninput = updateCalorieSupply;
+emptycalorieRange.oninput = updateEmptyCalorieSupply;
+fruitVegRange.oninput = updateFruitVegSupply;
+wasteRange.oninput = updateWasteSupply;
+
+proteinInput.onblur = function () {
+  proteinRange.value = this.value;
+  updateProteinSupply();
+}
+
+calorieInput.onblur = function () {
+  calorieRange.value = this.value;
+  updateCalorieSupply();
+}
+
+emptycalorieInput.onblur = function () {
+  emptycalorieRange.value = this.value;
+  updateEmptyCalorieSupply();
+}
+
+fruitVegInput.onblur = function () {
+  fruitVegRange.value = this.value;
+  updateFruitVegSupply();
+}
+
+wasteInput.onblur = function () {
+  wasteRange.value = this.value;
+  updateWasteSupply();
+}
+
+proteinInput.addEventListener("keydown", function (event) {
+  if (event.keyCode === 13) {
+    this.blur();
   }
-  
-  // Ensure external data is processed correctly
-  calculateProteinPerKcal(nutritional_data);
-  
+});
+
+calorieInput.addEventListener("keydown", function (event) {
+  if (event.keyCode === 13) {
+    this.blur();
+  }
+});
+
+emptycalorieInput.addEventListener("keydown", function (event) {
+  if (event.keyCode === 13) {
+    this.blur();
+  }
+});
+
+fruitVegInput.addEventListener("keydown", function (event) {
+  if (event.keyCode === 13) {
+    this.blur();
+  }
+});
+
+wasteInput.addEventListener("keydown", function (event) {
+  if (event.keyCode === 13) {
+    this.blur();
+  }
+});
+
+// Initial display on page load
+displayProteinFoods();
+
