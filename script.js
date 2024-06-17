@@ -14,12 +14,7 @@ calculateProteinPerKcal(nutritional_data);
 function calculateProteinRatio(proteinFood, carbFood, kappa) {
   let kappac = nutritional_data[carbFood].protein_per_kcal;
   let kappap = nutritional_data[proteinFood].protein_per_kcal;
-  if (kappac>kappap){
-    return 1-((kappa - kappap) / (kappac - kappap));
-  }
-  else {
-    return ((kappa - kappac) / (kappap - kappac));
-  }
+  return ((kappa - kappac) / (kappap - kappac));
 }
 
 function displayProteinFoods() {
@@ -46,9 +41,12 @@ function displayProteinFoods() {
       let cell = row.insertCell();
       let proteinRatio = calculateProteinRatio(proteinFood, carbFood, kappa);
 
-      if (isNaN(proteinRatio) || proteinRatio < 0 || proteinRatio > 1) {
-        cell.textContent = "n.a.";
+      if (isNaN(proteinRatio) || Math.abs(proteinRatio) > 1) {
+        cell.textContent = "F";
         cell.style.backgroundColor = `rgba(123, 123, 123,1)`;
+      } else if (proteinRatio < 0) {
+      	cell.textContent = "0%";
+        cell.style.backgroundColor = `rgba(123, 123, 123,0)`;
       } else {
         cell.textContent = String((100 * proteinRatio).toFixed(0)) + "%";
         let colorValue = Math.round(proteinRatio * 100);

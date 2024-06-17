@@ -387,6 +387,6 @@ const carbFoods = [
   "Oats",
   "Rice",
   "Potatoes",
-  "Cassava"
+  "Cassava",
 ];
 
