@@ -18,7 +18,7 @@ function calculateProteinRatio(proteinFood, carbFood, kappa) {
 }
 
 function displayProteinFoods() {
-  let kappa = (proteinRange.value / (calorieRange.value - emptycalorieRange.value - fruitVegRange.value - wasteRange.value));
+  let kappa = (proteinRange.value / (calorieRange.value - emptycalorieRange.value - fruitVegRange.value));
   let tableBody = document.querySelector('#ratiosTable tbody');
   let carbHeaderRow = document.getElementById('carbHeaderRow');
 
@@ -68,9 +68,6 @@ var emptycalorieInput = document.getElementById("emptycalorieInput");
 var fruitVegRange = document.getElementById("fruitVegRange");
 var fruitVegInput = document.getElementById("fruitVegInput");
 
-var wasteRange = document.getElementById("wasteRange");
-var wasteInput = document.getElementById("wasteInput");
-
 var proteinPerCalorieSupply = document.getElementById("proteinpercalorieSupply");
 
 proteinPerCalorieSupply.innerHTML = String((100 * 4 * (proteinRange.value - fruitVegRange.value*5/400) / ((calorieRange.value - emptycalorieRange.value - fruitVegRange.value))).toFixed(2)) + "%";
@@ -95,11 +92,6 @@ function updateFruitVegSupply() {
   updateProteinPerCalorieSupply();
 }
 
-function updateWasteSupply() {
-  wasteInput.value = wasteRange.value;
-  updateProteinPerCalorieSupply();
-}
-
 function updateProteinPerCalorieSupply() {
   proteinPerCalorieSupply.innerHTML = String((100 * 4 * (proteinRange.value - fruitVegRange.value*5/400) / (calorieRange.value - emptycalorieRange.value - fruitVegRange.value)).toFixed(2)) + "%";
 }
@@ -108,7 +100,6 @@ proteinRange.oninput = updateProteinSupply;
 calorieRange.oninput = updateCalorieSupply;
 emptycalorieRange.oninput = updateEmptyCalorieSupply;
 fruitVegRange.oninput = updateFruitVegSupply;
-wasteRange.oninput = updateWasteSupply;
 
 proteinInput.onblur = function () {
   proteinRange.value = this.value;
@@ -130,11 +121,6 @@ fruitVegInput.onblur = function () {
   updateFruitVegSupply();
 }
 
-wasteInput.onblur = function () {
-  wasteRange.value = this.value;
-  updateWasteSupply();
-}
-
 proteinInput.addEventListener("keydown", function (event) {
   if (event.keyCode === 13) {
     this.blur();
@@ -154,12 +140,6 @@ emptycalorieInput.addEventListener("keydown", function (event) {
 });
 
 fruitVegInput.addEventListener("keydown", function (event) {
-  if (event.keyCode === 13) {
-    this.blur();
-  }
-});
-
-wasteInput.addEventListener("keydown", function (event) {
   if (event.keyCode === 13) {
     this.blur();
   }
