@@ -3,4 +3,4 @@
 This interactive widget can be used here:
 https://delekof.github.io/climatefoodcombos/
 
-whoop de doop
+please don't make stupid edits, pete
