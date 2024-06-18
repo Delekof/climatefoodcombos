@@ -440,13 +440,22 @@ const proteinFoods = [
   "Planted chicken*",
 ];
 
+// const carbFoods = [
+//   "Bread",
+//   "Corn",
+//   "Barley",
+//   "Oats",
+//   "Rice",
+//   "Potatoes",
+//   "Cassava",
+// ];
+
 const carbFoods = [
-  "Bread",
-  "Corn",
   "Barley",
+  "Bread",
+  "Potatoes",
+  "Corn",
+  "Cassava",
   "Oats",
   "Rice",
-  "Potatoes",
-  "Cassava",
 ];
-
