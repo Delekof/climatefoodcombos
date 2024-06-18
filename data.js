@@ -13,6 +13,7 @@ const data_dict = {
       median: 1.3,
       upper: 2.3,
     },
+    nutrient_density: 94 // kcal kg–1
   },
   Corn: {
     FU: "1000kcal",
@@ -28,21 +29,7 @@ const data_dict = {
       median: 1.2,
       upper: 2.3,
     },
-  },
-  Barley: {
-    FU: "1000kcal",
-    land_use: {
-      lower: 0.3,
-      mean: 1.1,
-      median: 0.9,
-      upper: 2.4,
-    },
-    emissions: {
-      lower: 0.7,
-      mean: 1.2,
-      median: 1.2,
-      upper: 1.6,
-    },
+    nutrient_density: 4165 // kcal kg–1
   },
   Oats: {
     FU: "1000kcal",
@@ -58,6 +45,7 @@ const data_dict = {
       median: 2.6,
       upper: 4.1,
     },
+    nutrient_density: 2605 // kcal kg–1
   },
   Rice: {
     FU: "1000kcal",
@@ -73,6 +61,7 @@ const data_dict = {
       median: 3.7,
       upper: 8.8,
     },
+    nutrient_density: 3685 // kcal kg–1
   },
   Potatoes: {
     FU: "1000kcal",
@@ -88,6 +77,7 @@ const data_dict = {
       median: 0.5,
       upper: 0.6,
     },
+    nutrient_density: 730 // kcal kg–1
   },
   Cassava: {
     FU: "1000kcal",
@@ -103,6 +93,7 @@ const data_dict = {
       median: 1.1,
       upper: 2.1,
     },
+    nutrient_density: 975 // kcal kg–1
   },
   "Mixed Pulses": {
     FU: "100g protein",
@@ -118,6 +109,7 @@ const data_dict = {
       median: 1.4,
       upper: 3.8,
     },
+    nutrient_density: 220 // g kg–1
   },
   Peas: {
     FU: "100g protein",
@@ -133,6 +125,7 @@ const data_dict = {
       median: 0.8,
       upper: 1.7,
     },
+    nutrient_density: 215 // g kg–1
   },
   "Mixed Nuts": {
     FU: "100g protein",
@@ -148,6 +141,7 @@ const data_dict = {
       median: -1.3,
       upper: 3.8,
     },
+    nutrient_density: 160 // g kg–1
   },
   Peanuts: {
     FU: "100g protein",
@@ -163,6 +157,7 @@ const data_dict = {
       median: 3.3,
       upper: 5.8,
     },
+    nutrient_density: 260 // g kg–1
   },
   Tofu: {
     FU: "100g protein",
@@ -178,8 +173,9 @@ const data_dict = {
       median: 2.6,
       upper: 5.6,
     },
+    nutrient_density: 160 // g kg–1
   },
-  Beef: {
+  "Beef (beef herd)": {
     FU: "100g protein",
     land_use: {
       lower: 82.8,
@@ -193,7 +189,24 @@ const data_dict = {
       median: 60.4,
       upper: 209.9,
     },
+    nutrient_density: 200 // g kg–1
   },
+  "Beef (dairy herd)": {
+    FU: "100g protein",
+    land_use: {
+      lower: 14.4,
+      mean: 43.2,
+      median: 25.9,
+      upper: 106.4,
+    },
+    emissions: {
+      lower: 17.9,
+      mean: 33.3,
+      median: 34.1,
+      upper: 56.7,
+    },
+    nutrient_density: 200 // g kg–1
+},
   Lamb: {
     FU: "100g protein",
     land_use: {
@@ -208,6 +221,7 @@ const data_dict = {
       median: 40.6,
       upper: 54.4,
     },
+    nutrient_density: 200 // g kg–1
   },
   Pork: {
     FU: "100g protein",
@@ -223,6 +237,7 @@ const data_dict = {
       median: 10.6,
       upper: 22.3,
     },
+    nutrient_density: 160 // g kg–1
   },
   Chicken: {
     FU: "100g protein",
@@ -238,6 +253,7 @@ const data_dict = {
       median: 7.5,
       upper: 20.1,
     },
+    nutrient_density: 175 // g kg–1
   },
   Cheese: {
     FU: "100g protein",
@@ -253,6 +269,7 @@ const data_dict = {
       median: 18.6,
       upper: 39.3,
     },
+    nutrient_density: 225 // g kg–1
   },
   Eggs: {
     FU: "100g protein",
@@ -268,6 +285,7 @@ const data_dict = {
       median: 4.2,
       upper: 8.4,
     },
+    nutrient_density: 110 // g kg–1
   },
   "Farmed Fish": {
     FU: "100g protein",
@@ -283,6 +301,7 @@ const data_dict = {
       median: 7.9,
       upper: 26.5,
     },
+    nutrient_density: 230 // g kg–1
   },
   "Farmed Shrimp": {
     FU: "100g protein",
@@ -298,6 +317,39 @@ const data_dict = {
       median: 14.7,
       upper: 52.1,
     },
+    nutrient_density: 150 // g kg–1
+  },
+  "Quorn vegan pieces*": {
+    FU: "100g protein",
+    land_use: {
+      lower: NaN,
+      mean: NaN,
+      median: NaN,
+      upper: NaN,
+    },
+    emissions: {
+      lower: 1.5,
+      mean: 1.5,
+      median: 1.5,
+      upper: 1.5,
+    },
+    nutrient_density: 100 // value not provided
+  },
+  "Planted chicken*": {
+    FU: "100g protein",
+    land_use: {
+      lower: NaN,
+      mean: NaN,
+      median: NaN,
+      upper: NaN,
+    },
+    emissions: {
+      lower: 0.68,
+      mean: 0.68,
+      median: 0.68,
+      upper: 0.68,
+    },
+    nutrient_density: 100 // value not provided
   },
 };
 
@@ -309,10 +361,6 @@ const nutritional_data = {
   Corn: {
     protein: 9.42, // per 100g
     kcal: 365, // per 100g
-  },
-  Barley: {
-    protein: 2.3, // per 100g (beer)
-    kcal: 43, // per 100g (beer)
   },
   Oats: {
     protein: 16.89, // per 100g
@@ -350,7 +398,11 @@ const nutritional_data = {
     protein: 8.15, // per 100g
     kcal: 76, // per 100g
   },
-  Beef: {
+  "Beef (dairy herd)": {
+    protein: 26.04, // per 100g (cooked)
+    kcal: 250, // per 100g (cooked)
+  },
+  "Beef (beef herd)": {
     protein: 26.04, // per 100g (cooked)
     kcal: 250, // per 100g (cooked)
   },
@@ -382,10 +434,19 @@ const nutritional_data = {
     protein: 20.03, // per 100g (shrimp)
     kcal: 83, // per 100g (shrimp)
   },
+  "Quorn vegan pieces*": {
+    protein: 15.3,
+    kcal: 94,
+  },
+  "Planted chicken*": {
+    protein: 24,
+    kcal: 151
+  },
 };
 
 const proteinFoods = [
-  "Beef",
+  "Beef (beef herd)",
+  "Beef (dairy herd)",
   "Lamb",
   "Farmed Shrimp",
   "Cheese",
@@ -397,16 +458,26 @@ const proteinFoods = [
   "Tofu",
   "Mixed Pulses",
   "Peas",
-  "Mixed Nuts"
+  "Mixed Nuts",
+  "Quorn vegan pieces*",
+  "Planted chicken*",
 ];
+
+// const carbFoods = [
+//   "Bread",
+//   "Corn",
+//   "Barley",
+//   "Oats",
+//   "Rice",
+//   "Potatoes",
+//   "Cassava",
+// ];
 
 const carbFoods = [
   "Bread",
+  "Potatoes",
   "Corn",
-  "Barley",
+  "Cassava",
   "Oats",
   "Rice",
-  "Potatoes",
-  "Cassava",
 ];
-
