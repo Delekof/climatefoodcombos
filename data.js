@@ -175,7 +175,7 @@ const data_dict = {
     },
     nutrient_density: 160 // g kg–1
   },
-  Beef: {
+  "Beef (beef herd)": {
     FU: "100g protein",
     land_use: {
       lower: 82.8,
@@ -191,6 +191,22 @@ const data_dict = {
     },
     nutrient_density: 200 // g kg–1
   },
+  "Beef (dairy herd)": {
+    FU: "100g protein",
+    land_use: {
+      lower: 14.4,
+      mean: 43.2,
+      median: 25.9,
+      upper: 106.4,
+    },
+    emissions: {
+      lower: 17.9,
+      mean: 33.3,
+      median: 34.1,
+      upper: 56.7,
+    },
+    nutrient_density: 200 // g kg–1
+},
   Lamb: {
     FU: "100g protein",
     land_use: {
@@ -382,7 +398,11 @@ const nutritional_data = {
     protein: 8.15, // per 100g
     kcal: 76, // per 100g
   },
-  Beef: {
+  "Beef (dairy herd)": {
+    protein: 26.04, // per 100g (cooked)
+    kcal: 250, // per 100g (cooked)
+  },
+  "Beef (beef herd)": {
     protein: 26.04, // per 100g (cooked)
     kcal: 250, // per 100g (cooked)
   },
@@ -425,7 +445,8 @@ const nutritional_data = {
 };
 
 const proteinFoods = [
-  "Beef",
+  "Beef (beef herd)",
+  "Beef (dairy herd)",
   "Lamb",
   "Farmed Shrimp",
   "Cheese",
