@@ -14,9 +14,9 @@ function calculateEmissionsPerKcal(data) {
   for (let food in data) {
     let emissions = data_dict[food].emissions.median;
     if (data_dict[food].FU == "1000kcal"){
-      data[food].emissions_per_kcal = parseFloat((emissions / 1000).toFixed(5));
+      data[food].emissions_per_kcal = parseFloat((emissions / data_dict[food].nutrient_density).toFixed(5));
     } else if (data_dict[food].FU == "100g protein"){
-      data[food].emissions_per_kcal = parseFloat((data[food].protein_per_kcal*emissions / 100).toFixed(5));
+      data[food].emissions_per_kcal = parseFloat((data[food].protein_per_kcal*emissions / data_dict[food].nutrient_density).toFixed(5));
     }
   }
   console.log(data);

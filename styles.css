@@ -12,12 +12,29 @@ body {
 h1 {
   color: #00796b;
   margin-top: 20px;
+  text-align: center;
+}
+
+.preset-buttons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+  width: 100%;
+  max-width: 1000px;
+}
+
+.preset-buttons button {
+  padding: 10px;
+  font-size: 16px;
 }
 
 .slidecontainer {
   display: flex;
   align-items: center;
   margin: 15px 0;
+  flex-direction: column;
+  width: 100%;
+  max-width: 600px;
 }
 
 .slidecontainer p {
@@ -26,15 +43,17 @@ h1 {
 }
 
 .slider {
-  width: 200px;
-  margin: 0 10px;
+  width: 100%;
+  max-width: 400px;
+  margin: 10px 0;
 }
 
 input[type="number"] {
-  width: 60px;
+  width: 80px;
   padding: 5px;
   border: 1px solid #00796b;
   border-radius: 5px;
+  margin-top: 10px;
 }
 
 button {
@@ -62,7 +81,8 @@ button:hover {
   background-color: #ffffff;
   border: 1px solid #004d40;
   padding: 10px;
-  width: 80%;
+  width: 100%;
+  max-width: 800px;
   border-radius: 10px;
   margin-top: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -71,32 +91,23 @@ button:hover {
 .input-group {
   display: flex;
   align-items: center;
+  flex-direction: column;
+  width: 100%;
+  max-width: 600px;
 }
 
 .input-group input[type="range"] {
-  flex-grow: 1;
-  margin-right: 10px;
+  width: 100%;
+  margin: 10px 0;
 }
 
 .input-group input[type="number"] {
-  flex-shrink: 0;
   width: 60px;
-}
-
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  width: 100%;
-}
-
-.table-container, .legend-container {
-  flex: 1 1 300px;
-  margin: 10px;
 }
 
 table {
   width: 100%;
+  max-width: 1000px;
   border-collapse: collapse;
   margin-top: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -123,6 +134,7 @@ td {
   display: flex;
   flex-direction: column;
   margin-top: 20px;
+  align-items: center;
 }
 
 .legend-item {
@@ -135,4 +147,19 @@ td {
   width: 20px;
   height: 20px;
   margin-right: 10px;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+  .preset-buttons {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+
+  .slidecontainer, .input-group {
+    width: 90%;
+  }
+
+  table {
+    width: 100%;
+  }
 }
