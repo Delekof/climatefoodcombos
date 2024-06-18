@@ -299,6 +299,36 @@ const data_dict = {
       upper: 52.1,
     },
   },
+  "Quorn vegan pieces*": {
+    FU: "100g protein",
+    land_use: {
+      lower: NaN,
+      mean: NaN,
+      median: NaN,
+      upper: NaN,
+    },
+    emissions: {
+      lower: 1.5,
+      mean: 1.5,
+      median: 1.5,
+      upper: 1.5,
+    },
+  },
+  "Planted chicken*": {
+    FU: "100g protein",
+    land_use: {
+      lower: NaN,
+      mean: NaN,
+      median: NaN,
+      upper: NaN,
+    },
+    emissions: {
+      lower: 0.68,
+      mean: 0.68,
+      median: 0.68,
+      upper: 0.68,
+    },
+  },
 };
 
 const nutritional_data = {
@@ -382,6 +412,14 @@ const nutritional_data = {
     protein: 20.03, // per 100g (shrimp)
     kcal: 83, // per 100g (shrimp)
   },
+  "Quorn vegan pieces*": {
+    protein: 15.3,
+    kcal: 94,
+  },
+  "Planted chicken*": {
+    protein: 24,
+    kcal: 151
+  },
 };
 
 const proteinFoods = [
@@ -397,7 +435,9 @@ const proteinFoods = [
   "Tofu",
   "Mixed Pulses",
   "Peas",
-  "Mixed Nuts"
+  "Mixed Nuts",
+  "Quorn vegan pieces*",
+  "Planted chicken*",
 ];
 
 const carbFoods = [

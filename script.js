@@ -26,22 +26,27 @@ calculateEmissionsPerKcal(nutritional_data);
 function calculateProteinRatio(proteinFood, carbFood, kappa) {
   let kappac = nutritional_data[carbFood].protein_per_kcal;
   let kappap = nutritional_data[proteinFood].protein_per_kcal;
-  if (kappap>kappac){
+  if (kappac>kappa){
+    return 0;
+  } else if (kappap>kappa) {
     return ((kappa - kappac) / (kappap - kappac));
   } else {
-    return ((kappa - kappap) / (kappac - kappap));
+    return NaN
   }
 }
 
 function calculateRatioEmissions(proteinFood, carbFood, kappa) {
   let calories = (calorieRange.value - emptycalorieRange.value - fruitVegRange.value)
-  let protein_emissions = calories*kappa * nutritional_data[proteinFood].emissions_per_kcal
+  let protein_emissions = kappa*calories * nutritional_data[proteinFood].emissions_per_kcal
   let carb_emissions = (1-kappa)*calories * nutritional_data[carbFood].emissions_per_kcal
   return (protein_emissions + carb_emissions)*365/1000
 }
 
+const globalPerCapitaEmissions = 5;
+const requiredPerCapitaEmissions2050 = 1.3;
+
 function displayProteinFoods() {
-  let kappa = (proteinRange.value / (calorieRange.value - emptycalorieRange.value - fruitVegRange.value));
+  let kappa = (proteinRange.value - fruitVegRange.value*5/400) / ((calorieRange.value - emptycalorieRange.value - fruitVegRange.value))
   let tableBody = document.querySelector('#ratiosTable tbody');
   let carbHeaderRow = document.getElementById('carbHeaderRow');
 
@@ -81,27 +86,33 @@ function displayProteinFoods() {
       let cell2 = row2.insertCell();
       let proteinRatio = calculateProteinRatio(proteinFood, carbFood, kappa);
 
-      if (isNaN(proteinRatio) || proteinRatio > 1) {
+      if (isNaN(proteinRatio)) {
         cell.textContent = "F";
         cell.style.backgroundColor = `rgba(123, 123, 123,1)`;
         cell2.textContent = "F";
         cell2.style.backgroundColor = `rgba(123, 123, 123,1)`;
-      } else if (proteinRatio < 0) {
-      	cell.textContent = "0%";
-        cell.style.backgroundColor = `rgba(123, 123, 123,0)`;
-        let colorValue2 = Math.round(calculateRatioEmissions(proteinFood, carbFood, 0).toFixed(2));
-        cell2.style.backgroundColor = `rgba(123, 0, 0, ${colorValue2 / 40})`; // Greenish color
-        cell2.textContent = calculateRatioEmissions(proteinFood, carbFood, 0).toFixed(2);
       } else {
+        let emissionRatio = calculateRatioEmissions(proteinFood, carbFood, proteinRatio);
         cell.textContent = String((100 * proteinRatio).toFixed(0)) + "%";
         let colorValue = Math.round(proteinRatio * 100);
         cell.style.backgroundColor = `rgba(0, 123, 107, ${colorValue / 100})`; // Greenish color
-        let colorValue2 = Math.round(calculateRatioEmissions(proteinFood, carbFood, proteinRatio).toFixed(2));
-        cell2.style.backgroundColor = `rgba(123, 0, 0, ${colorValue2 / 40})`; // Greenish color
-        cell2.textContent = calculateRatioEmissions(proteinFood, carbFood, proteinRatio).toFixed(2);
+        cell2.style.backgroundColor = getColorForEmissionRatio(emissionRatio);
+        cell2.textContent = emissionRatio.toFixed(2);
       }
     });
   });
+}
+
+function getColorForEmissionRatio(emissionRatio) {
+  if (emissionRatio > globalPerCapitaEmissions) {
+    return 'rgba(255, 0, 0, 0.5)';
+  } else if (emissionRatio > 2 * requiredPerCapitaEmissions2050) {
+    return 'rgba(255, 165, 0, 0.5)';
+  } else if (emissionRatio > requiredPerCapitaEmissions2050) {
+    return 'rgba(255, 255, 0, 0.5)';
+  } else {
+    return 'rgba(0, 128, 0, 0.5)';
+  }
 }
 
 var proteinRange = document.getElementById("proteinRange");
