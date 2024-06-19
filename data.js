@@ -480,4 +480,6 @@ const carbFoods = [
   "Cassava",
   "Oats",
   "Rice",
+  // "Peanuts",
+  // "Mixed Nuts",
 ];

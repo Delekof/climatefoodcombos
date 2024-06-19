@@ -12,7 +12,7 @@ calculateProteinPerKcal(nutritional_data);
 
 function calculateEmissionsPerKcal(data) {
   for (let food in data) {
-    let emissions = data_dict[food].emissions.median;
+    let emissions = data_dict[food].emissions.mean;
     if (data_dict[food].FU == "1000kcal"){
       data[food].emissions_per_kcal = parseFloat((emissions / data_dict[food].nutrient_density).toFixed(5));
     } else if (data_dict[food].FU == "100g protein"){
@@ -110,8 +110,10 @@ function getColorForEmissionRatio(emissionRatio) {
     return 'rgba(255, 165, 0, 0.5)';
   } else if (emissionRatio > requiredPerCapitaEmissions2050) {
     return 'rgba(255, 255, 0, 0.5)';
-  } else {
+  } else if (emissionRatio > requiredPerCapitaEmissions2050/2){
     return 'rgba(0, 128, 0, 0.5)';
+  } else {
+    return 'rgba(64, 128, 192, 0.5)';
   }
 }
 
