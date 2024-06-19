@@ -151,3 +151,52 @@ td {
     width: 100%;
   }
 }
+
+.table-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.table-wrapper {
+  display: none;
+  width: 100%;
+}
+
+.table-wrapper.active {
+  display: block;
+}
+
+#prevBtn, #nextBtn {
+  background-color: #ddd;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  margin: 0 10px; /* Add margin around the buttons */
+  align-items: top;
+}
+
+/* Emissions Table Specific Styles */
+.emissions-table .td {
+  min-width: 50px;
+  color: #004d40;
+}
+
+/* Add color legend styles here to link with emissions table */
+.color-legend {
+  margin-top: 20px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.color-box {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+

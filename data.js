@@ -322,10 +322,10 @@ const data_dict = {
   "Quorn vegan pieces*": {
     FU: "100g protein",
     land_use: {
-      lower: NaN,
-      mean: NaN,
-      median: NaN,
-      upper: NaN,
+      lower: 3,
+      mean: 3,
+      median: 3,
+      upper: 3,
     },
     emissions: {
       lower: 1.5,
@@ -338,10 +338,10 @@ const data_dict = {
   "Planted chicken*": {
     FU: "100g protein",
     land_use: {
-      lower: NaN,
-      mean: NaN,
-      median: NaN,
-      upper: NaN,
+      lower: 3,
+      mean: 3,
+      median: 3,
+      upper: 3,
     },
     emissions: {
       lower: 0.68,
@@ -454,11 +454,11 @@ const proteinFoods = [
   "Pork",
   "Chicken",
   "Eggs",
-  "Peanuts",
+  // "Peanuts",
   "Tofu",
   "Mixed Pulses",
   "Peas",
-  "Mixed Nuts",
+  // "Mixed Nuts",
   "Quorn vegan pieces*",
   "Planted chicken*",
 ];
@@ -480,6 +480,6 @@ const carbFoods = [
   "Cassava",
   "Oats",
   "Rice",
-  // "Peanuts",
-  // "Mixed Nuts",
+  "Peanuts",
+  "Mixed Nuts",
 ];

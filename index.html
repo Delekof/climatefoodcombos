@@ -10,8 +10,7 @@
 <h1>Climate Food Combos</h1>
 
 <div class="preset-buttons">
-  <button onclick="setPreset('highIncome')">💰High Income countries (default)</button>
-  <button onclick="setPreset('unitedStates')">🏈United States</button>
+  <button onclick="setPreset('unitedStates')">🏈United States (default)</button>
   <button onclick="setPreset('china')">🍵China</button>
   <button onclick="setPreset('india')">🐘India</button>
   <button onclick="setPreset('health')">💪Picture of health</button>
@@ -20,79 +19,154 @@
 
 <div class="slidecontainer">
   <p>Protein supply:</p>
-  <input type="range" min="50" max="150" value="115" class="slider" id="proteinRange">
-  <input type="number" min="50" max="150" value="115" id="proteinInput">g
+  <input type="range" min="50" max="150" class="slider" id="proteinRange">
+  <input type="number" min="50" max="150" id="proteinInput">g
 </div>
 
 <div class="slidecontainer">
   <p>Calorie supply:</p>
-  <input type="range" min="2000" max="4000" value="3500" class="slider" id="calorieRange">
-  <input type="number" min="2000" max="4000" value="3500" id="calorieInput">kcal
+  <input type="range" min="2000" max="4000" class="slider" id="calorieRange">
+  <input type="number" min="2000" max="4000" id="calorieInput">kcal
 </div>
 
 <div class="slidecontainer">
   <p>Fruit/Veg supply:</p>
-  <input type="range" min="0" max="1000" value="215" class="slider" id="fruitVegRange">
-  <input type="number" min="0" max="1000" value="215" id="fruitVegInput">kcal
+  <input type="range" min="0" max="1000" class="slider" id="fruitVegRange">
+  <input type="number" min="0" max="1000" id="fruitVegInput">kcal
 </div>
 
 <!-- 810 from oils and fats, 430 from sugar, 140 from alcohol -->
 <div class="slidecontainer">
   <p>"Empty" calories:</p>
-  <input type="range" min="0" max="2000" value="1350" class="slider" id="emptycalorieRange">
-  <input type="number" min="0" max="2000" value="1350" id="emptycalorieInput">kcal
+  <input type="range" min="0" max="2000" class="slider" id="emptycalorieRange">
+  <input type="number" min="0" max="2000" id="emptycalorieInput">kcal
 </div>
 
 <div>
   <p>"Nutritious" calories supply from protein: <span id="proteinpercalorieSupply"></span></p>
 </div>
 
-<h2>Ratio of calories from protein foods:</h2>
-<table id="ratiosTable">
-  <thead>
-    <tr id="carbHeaderRow">
-      <th>Protein/Carb</th>
-    </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
+<div class="table-container">
+  <button id="prevBtn" onclick="changeTable(-1)">&#9664;</button>
+  
+  <div id="ratiosTableContainer" class="table-wrapper">
+    <h2>Portion of your staple calories need to come from protein foods:</h2>
+    <table id="ratiosTable">
+      <thead>
+        <tr id="carbHeaderRow">
+          <th>Protein/Carb</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+  
+  <div id="emissionsTableContainer" class="table-wrapper">
+    <h2>Yearly emissions (tCO2e) from protein/carb combination:</h2>
+    <table id="emissionsTable">
+      <thead>
+        <tr id="carbHeaderRow2">
+          <th>Protein/Carb</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div>
 
-<h2>Yearly emissions from protein/carb combination:</h2>
-<table id="emissionsTable">
-  <thead>
-    <tr id="carbHeaderRow2">
-      <th>Protein/Carb</th>
-    </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-
-<div class="color-legend">
-  <div class="legend-item">
-    <div class="color-box" style="background-color: rgba(255, 0, 0, 0.5);"></div>
-    <span>Above current total global per capita emissions (5.0 tCO2e)</span>
+  <div id="landuseTableContainer" class="table-wrapper">
+    <h2>Land use (ha) from protein/carb combination:</h2>
+    <table id="landuseTable">
+      <thead>
+        <tr id="carbHeaderRow3">
+          <th>Protein/Carb</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
   </div>
-  <div class="legend-item">
-    <div class="color-box" style="background-color: rgba(255, 165, 0, 0.5);"></div>
-    <span>More than double net-zero 2050 food emissions target (2.6 - 5.0 tCO2e)</span>
-  </div>
-  <div class="legend-item">
-    <div class="color-box" style="background-color: rgba(255, 255, 0, 0.5);"></div>
-    <span>Greater than the net-zero 2050 food emissions target (1.3 - 2.6 tCO2e)</span>
-  </div>
-  <div class="legend-item">
-    <div class="color-box" style="background-color: rgba(0, 128, 0, 0.5);"></div>
-    <span>Below the net-zero 2050 food target (less than 1.3 tCO2e)</span>
-  </div>
-  <div class="legend-item">
-    <div class="color-box" style="background-color: rgba(64, 128, 192, 0.5);"></div>
-    <span>Safely below the net-zero 2050 food target (less than 0.7 tCO2e)</span>
-  </div>
+  <button id="nextBtn" onclick="changeTable(1)">&#9654;</button>
 </div>
 
+<!-- <div class="table-container">
+  <button id="prevBtn" onclick="changeTable(-1)">&#9664;</button>
+  
+  <div class="color-legend">
+    <div class="legend-item">
+      <div class="color-box" style="background-color: rgba(255, 0, 0, 0.5);"></div>
+      <span>Above current total global per capita emissions (5.0 tCO2e)</span>
+    </div>
+    <div class="legend-item">
+      <div class="color-box" style="background-color: rgba(255, 165, 0, 0.5);"></div>
+      <span>More than double net-zero 2050 food emissions target (2.6 - 5.0 tCO2e)</span>
+    </div>
+    <div class="legend-item">
+      <div class="color-box" style="background-color: rgba(255, 255, 0, 0.5);"></div>
+      <span>Greater than the net-zero 2050 food emissions target (1.3 - 2.6 tCO2e)</span>
+    </div>
+    <div class="legend-item">
+      <div class="color-box" style="background-color: rgba(0, 128, 0, 0.5);"></div>
+      <span>Below the net-zero 2050 food target (less than 1.3 tCO2e)</span>
+    </div>
+    <div class="legend-item">
+      <div class="color-box" style="background-color: rgba(64, 128, 192, 0.5);"></div>
+      <span>Safely below the net-zero 2050 food target (less than 0.7 tCO2e)</span>
+    </div>
+  </div>
+  
+  <div class="color-legend">
+    <div class="legend-item">
+      <div class="color-box" style="background-color: rgba(255, 0, 0, 0.5);"></div>
+      <span>Above current total global per capita emissions (5.0 tCO2e)</span>
+    </div>
+    <div class="legend-item">
+      <div class="color-box" style="background-color: rgba(255, 165, 0, 0.5);"></div>
+      <span>More than double net-zero 2050 food emissions target (2.6 - 5.0 tCO2e)</span>
+    </div>
+    <div class="legend-item">
+      <div class="color-box" style="background-color: rgba(255, 255, 0, 0.5);"></div>
+      <span>Greater than the net-zero 2050 food emissions target (1.3 - 2.6 tCO2e)</span>
+    </div>
+    <div class="legend-item">
+      <div class="color-box" style="background-color: rgba(0, 128, 0, 0.5);"></div>
+      <span>Below the net-zero 2050 food target (less than 1.3 tCO2e)</span>
+    </div>
+    <div class="legend-item">
+      <div class="color-box" style="background-color: rgba(64, 128, 192, 0.5);"></div>
+      <span>Safely below the net-zero 2050 food target (less than 0.7 tCO2e)</span>
+    </div>
+  </div>
+
+  <div class="color-legend">
+    <div class="legend-item">
+      <div class="color-box" style="background-color: rgba(255, 0, 0, 0.5);"></div>
+      <span>Above current total global per capita emissions (5.0 tCO2e)</span>
+    </div>
+    <div class="legend-item">
+      <div class="color-box" style="background-color: rgba(255, 165, 0, 0.5);"></div>
+      <span>More than double net-zero 2050 food emissions target (2.6 - 5.0 tCO2e)</span>
+    </div>
+    <div class="legend-item">
+      <div class="color-box" style="background-color: rgba(255, 255, 0, 0.5);"></div>
+      <span>Greater than the net-zero 2050 food emissions target (1.3 - 2.6 tCO2e)</span>
+    </div>
+    <div class="legend-item">
+      <div class="color-box" style="background-color: rgba(0, 128, 0, 0.5);"></div>
+      <span>Below the net-zero 2050 food target (less than 1.3 tCO2e)</span>
+    </div>
+    <div class="legend-item">
+      <div class="color-box" style="background-color: rgba(64, 128, 192, 0.5);"></div>
+      <span>Safely below the net-zero 2050 food target (less than 0.7 tCO2e)</span>
+    </div>
+  </div>
+  <button id="nextBtn" onclick="changeTable(1)">&#9654;</button>
+</div> -->
+
+<script src="calculations.js"></script>
+<script src="presets.js"></script>
+<script src="updates.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
-
