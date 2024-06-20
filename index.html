@@ -17,31 +17,6 @@
   <button onclick="setPreset('guidelines')">👩‍⚕️Dietary guidelines</button>
 </div>
 
-<div class="slidecontainer">
-  <p>Protein supply:</p>
-  <input type="range" min="50" max="150" class="slider" id="proteinRange">
-  <input type="number" min="50" max="150" id="proteinInput">g
-</div>
-
-<div class="slidecontainer">
-  <p>Calorie supply:</p>
-  <input type="range" min="2000" max="4000" class="slider" id="calorieRange">
-  <input type="number" min="2000" max="4000" id="calorieInput">kcal
-</div>
-
-<div class="slidecontainer">
-  <p>Fruit/Veg supply:</p>
-  <input type="range" min="0" max="1000" class="slider" id="fruitVegRange">
-  <input type="number" min="0" max="1000" id="fruitVegInput">kcal
-</div>
-
-<!-- 810 from oils and fats, 430 from sugar, 140 from alcohol -->
-<div class="slidecontainer">
-  <p>"Empty" calories:</p>
-  <input type="range" min="0" max="2000" class="slider" id="emptycalorieRange">
-  <input type="number" min="0" max="2000" id="emptycalorieInput">kcal
-</div>
-
 <div>
   <p>"Nutritious" calories supply from protein: <span id="proteinpercalorieSupply"></span></p>
 </div>
@@ -163,6 +138,31 @@
   </div>
   <button id="nextBtn" onclick="changeTable(1)">&#9654;</button>
 </div> -->
+
+<div class="slidecontainer">
+  <p>Protein supply:</p>
+  <input type="range" min="50" max="150" class="slider" id="proteinRange">
+  <input type="number" min="50" max="150" id="proteinInput">g
+</div>
+
+<div class="slidecontainer">
+  <p>Calorie supply:</p>
+  <input type="range" min="2000" max="4000" class="slider" id="calorieRange">
+  <input type="number" min="2000" max="4000" id="calorieInput">kcal
+</div>
+
+<div class="slidecontainer">
+  <p>Fruit/Veg supply:</p>
+  <input type="range" min="0" max="1000" class="slider" id="fruitVegRange">
+  <input type="number" min="0" max="1000" id="fruitVegInput">kcal
+</div>
+
+<!-- 810 from oils and fats, 430 from sugar, 140 from alcohol -->
+<div class="slidecontainer">
+  <p>"Empty" calories:</p>
+  <input type="range" min="0" max="2000" class="slider" id="emptycalorieRange">
+  <input type="number" min="0" max="2000" id="emptycalorieInput">kcal
+</div>
 
 <script src="calculations.js"></script>
 <script src="presets.js"></script>
