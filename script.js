@@ -113,6 +113,9 @@ function getColorForLanduseRatio(emissionRatio) {
   }
 }
 
+var radioButtons = document.querySelectorAll('input[name="average"]');
+var averageToUse = document.querySelector('input[name="average"]:checked').value;
+
 var proteinRange = document.getElementById("proteinRange");
 var proteinInput = document.getElementById("proteinInput");
 

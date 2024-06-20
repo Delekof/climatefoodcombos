@@ -11,26 +11,24 @@ function calculateProteinPerKcal(data) {
   
   function calculateEmissionsPerKcal(data) {
     for (let food in data) {
-      let emissions = data_dict[food].emissions.mean;
+      let emissions = data_dict[food].emissions[averageToUse];
       if (data_dict[food].FU == "1000kcal"){
         data[food].emissions_per_kcal = parseFloat((emissions / data_dict[food].nutrient_density).toFixed(5));
       } else if (data_dict[food].FU == "100g protein"){
         data[food].emissions_per_kcal = parseFloat((data[food].protein_per_kcal*emissions / data_dict[food].nutrient_density).toFixed(5));
       }
     }
-    console.log(data);
   }
 
   function calculateLandusePerKcal(data) {
     for (let food in data) {
-      let land_use = data_dict[food].land_use.mean;
+      let land_use = data_dict[food].land_use[averageToUse];
       if (data_dict[food].FU == "1000kcal"){
         data[food].landuse_per_kcal = parseFloat((land_use / data_dict[food].nutrient_density).toFixed(5));
       } else if (data_dict[food].FU == "100g protein"){
         data[food].landuse_per_kcal = parseFloat((data[food].protein_per_kcal*land_use / data_dict[food].nutrient_density).toFixed(5));
       }
     }
-    console.log(data);
   }
   
   function calculateProteinRatio(proteinFood, carbFood, kappa) {

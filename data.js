@@ -444,6 +444,97 @@ const nutritional_data = {
   },
 };
 
+const sustainabilityData = {
+  "Beef (beef herd)": { 
+    ethical: 0, // Ethical concerns: High animal welfare issues, significant land and water use
+    ecologicallySustainable: 0 // High land use, deforestation, overgrazing, and methane emissions
+  },
+  "Beef (dairy herd)": { 
+    ethical: 0, // Ethical concerns: Animal welfare issues, significant land and water use
+    ecologicallySustainable: 0 // Similar concerns as beef herd
+  },
+  "Lamb": { 
+    ethical: 0, // Ethical concerns: High animal welfare issues, significant land and water use
+    ecologicallySustainable: 0 // High land use, overgrazing, and methane emissions
+  },
+  "Farmed Shrimp": { 
+    ethical: 0, // Ethical concerns: Poor working conditions, habitat destruction
+    ecologicallySustainable: 0 // Destruction of mangroves, pollution
+  },
+  "Cheese": { 
+    ethical: 0, // Ethical concerns: Animal welfare issues, high land and water use
+    ecologicallySustainable: 0 // High land and water use, impacts of dairy farming
+  },
+  "Farmed Fish": { 
+    ethical: 0, // Ethical concerns: Depletion of wild fish stocks for feed, disease spread
+    ecologicallySustainable: 0 // Overfishing of feed, pollution, disease spread to wild fish
+  },
+  "Pork": { 
+    ethical: 0, // Ethical concerns: Animal welfare issues, significant land and water use
+    ecologicallySustainable: 0 // High feed conversion ratio, waste management issues
+  },
+  "Chicken": { 
+    ethical: 0, // Ethical concerns: Animal welfare issues, significant land and water use
+    ecologicallySustainable: 1 // Less impactful than beef, but still concerns with feed and waste
+  },
+  "Eggs": { 
+    ethical: 0, // Ethical concerns: Animal welfare issues, significant land and water use
+    ecologicallySustainable: 1 // Similar concerns as chicken, but somewhat lower impact
+  },
+  "Tofu": { 
+    ethical: 2, // Ethical: Plant-based, generally considered humane
+    ecologicallySustainable: 2 // Low impact, but dependent on sustainable soybean farming practices
+  },
+  "Mixed Pulses": { 
+    ethical: 2, // Ethical: Plant-based, generally considered humane
+    ecologicallySustainable: 2 // Generally low impact, nitrogen-fixing benefits for soil
+  },
+  "Peas": { 
+    ethical: 2, // Ethical: Plant-based, generally considered humane
+    ecologicallySustainable: 2 // Low impact, nitrogen-fixing benefits for soil
+  },
+  "Quorn vegan pieces*": { 
+    ethical: 2, // Ethical: Plant-based, generally considered humane
+    ecologicallySustainable: 2 // Low impact, fungal protein source
+  },
+  "Planted chicken*": { 
+    ethical: 2, // Ethical: Plant-based, generally considered humane
+    ecologicallySustainable: 2 // Plant-based, low impact
+  },
+  "Bread": { 
+    ethical: 2, // Ethical: Plant-based, generally considered humane
+    ecologicallySustainable: 1 // Depends on agricultural practices, pesticide use, soil health
+  },
+  "Potatoes": { 
+    ethical: 2, // Ethical: Plant-based, generally considered humane
+    ecologicallySustainable: 2 // Generally low impact, efficient use of land
+  },
+  "Corn": { 
+    ethical: 2, // Ethical: Plant-based, generally considered humane
+    ecologicallySustainable: 1 // Concerns with monocropping, pesticide use, soil depletion
+  },
+  "Cassava": { 
+    ethical: 2, // Ethical: Plant-based, generally considered humane
+    ecologicallySustainable: 2 // Generally low impact, resilient crop
+  },
+  "Oats": { 
+    ethical: 2, // Ethical: Plant-based, generally considered humane
+    ecologicallySustainable: 2 // Generally low impact, good for soil health
+  },
+  "Rice": { 
+    ethical: 2, // Ethical: Plant-based, generally considered humane
+    ecologicallySustainable: 1 // Varies widely; water use and methane emissions are concerns
+  },
+  "Mixed Nuts": { 
+    ethical: 2, // Ethical: Plant-based, generally considered humane
+    ecologicallySustainable: 1 // Varies by type; some nuts have high water use, potential habitat destruction
+  },
+  "Peanuts": { 
+    ethical: 2, // Ethical: Plant-based, generally considered humane
+    ecologicallySustainable: 2 // Generally low impact, nitrogen-fixing benefits for soil
+  }
+};
+
 const proteinFoods = [
   "Beef (beef herd)",
   "Beef (dairy herd)",
@@ -480,6 +571,6 @@ const carbFoods = [
   "Cassava",
   "Oats",
   "Rice",
-  "Peanuts",
   "Mixed Nuts",
+  "Peanuts",
 ];

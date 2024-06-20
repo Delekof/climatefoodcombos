@@ -139,6 +139,18 @@
   <button id="nextBtn" onclick="changeTable(1)">&#9654;</button>
 </div> -->
 
+<div class="radiocontainer">
+  Datset values to use:
+  <input type="radio" id="low" name="average" value="lower">
+  <label for="low">low</label>
+  <input type="radio" id="median" name="average" value="median" checked="checked">
+  <label for="median">median</label>
+  <input type="radio" id="mean" name="average" value="mean">
+  <label for="mean">mean</label>
+  <input type="radio" id="high" name="average" value="upper">
+  <label for="high">high</label>
+</div>
+
 <div class="slidecontainer">
   <p>Protein supply:</p>
   <input type="range" min="50" max="150" class="slider" id="proteinRange">
