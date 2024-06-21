@@ -34,7 +34,7 @@ function setPreset(preset) {
         protein: 56,
         calorie: 2000,
         fruitVeg: 250,
-        emptyCalorie: 400,
+        emptyCalorie: 600,
       }
     };
   

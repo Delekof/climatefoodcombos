@@ -36,17 +36,17 @@ h1 {
 
 .tooltip .tooltiptext {
   visibility: hidden;
-  width: 200px;
+  width: 300px;
   background-color: #555;
   color: #fff;
   text-align: center;
   border-radius: 6px;
-  padding: 0 0;
+  padding: 0;
   position: absolute;
   z-index: 1;
-  bottom: 125%; /* Position above the element */
+  bottom: 125%;
   left: 50%;
-  margin-left: -100px; /* Use negative margin to center the tooltip */
+  margin-left: -100px;
   opacity: 0;
   transition: opacity 0.3s;
 }
@@ -138,7 +138,6 @@ table {
   border-collapse: collapse;
   margin-top: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  color: #ffffff;
 }
 
 th, td {
@@ -212,19 +211,15 @@ td {
   padding: 10px;
   cursor: pointer;
   font-size: 18px;
-  margin: 0 10px; /* Add margin around the buttons */
-  align-items: top;
+  margin: 0 10px;
 }
 
-/* Emissions Table Specific Styles */
 .emissions-table .td {
   min-width: 50px;
   color: #004d40;
 }
 
-/* Add color legend styles here to link with emissions table */
 .color-legend {
-  margin-top: 20px;
   display: none;
   width: 100%;
 }
@@ -244,3 +239,29 @@ td {
   margin-right: 10px;
 }
 
+.gallery-container {
+  width: 100%;
+  height: 300px;
+  background-color: #f0f0f0;
+  position: relative;
+}
+
+.indicator-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.indicator {
+  width: 15px;
+  height: 15px;
+  margin: 0 5px;
+  background-color: #ddd;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.indicator.active {
+  background-color: #4285f4;
+}
