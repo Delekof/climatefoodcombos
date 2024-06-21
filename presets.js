@@ -33,7 +33,7 @@ function setPreset(preset) {
       guidelines: {
         protein: 56,
         calorie: 2000,
-        fruitVeg: 400,
+        fruitVeg: 250,
         emptyCalorie: 400,
       }
     };

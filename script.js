@@ -41,6 +41,8 @@ function displayProteinFoods() {
       let row = tableBody.insertRow();
       let cell = row.insertCell(0);
       cell.textContent = proteinFood;
+      cell.style.backgroundColor = "#00796b"
+      cell.style.color = "white"
       
       cells[tableIndex][proteinIndex] = [];
 
@@ -148,11 +150,11 @@ function getColorForLanduseRatio(landuseRatio) {
 function getColorForProteinRatio(proteinRatio) {
   if (isNaN(proteinRatio)) {
     return `grey`;
-  } else if (Math.abs(proteinRatio - 0.3) <= .15) {
+  } else if (Math.abs(proteinRatio - 0.3) < .2) {
     return ['rgba(0, 128, 0, 0.5)',2]; // Green
-  } else if (Math.abs(proteinRatio - 0.3) <= .3) {
+  } else if (Math.abs(proteinRatio - 0.3) < .3) {
     return ['rgba(255, 255, 0, 0.5)',1]; // Yellow
-  } else if (Math.abs(proteinRatio - 0.3) > .3) {
+  } else if (Math.abs(proteinRatio - 0.3) >= .3) {
     return ['rgba(255, 0, 0, 0.5)',0]; // Red
   }
 }
@@ -194,17 +196,16 @@ proteinPerCalorieSupply.innerHTML = String((100 * 4 * (proteinRange.value - frui
 
 let currentTableIndex = 0;
 const tables = document.querySelectorAll('.table-wrapper');
+const legends = document.querySelectorAll('.color-legend');
 
-function toggleLegend() {
-  // const colorLegend = document.querySelector('.color-legend');
-  // if (currentTableIndex == 1){
-  //   colorLegend.style.visibility = 'visible';
-  // } else {
-  //   colorLegend.style.visibility = 'hidden';
-  // }
+function changeLegend() {
+  legends[currentTableIndex].classList.remove('active');
+  if (currentTableIndex < 0) {
+    currentTableIndex = tables.length - 1;
+  } else if (currentTableIndex >= tables.length) {
+    currentTableIndex = 0;
+  }
 }
-
-toggleLegend()
 
 function changeTable(direction) {
   tables[currentTableIndex].classList.remove('active');
@@ -216,7 +217,7 @@ function changeTable(direction) {
     currentTableIndex = 0;
   }
 
-  toggleLegend()
+  changeLegend()
 
   tables[currentTableIndex].classList.add('active');
 }

@@ -9,12 +9,23 @@
 
 <h1>Climate Food Combos</h1>
 
+<p>Choose a preset from below:</p>
 <div class="preset-buttons">
-  <button onclick="setPreset('unitedStates')">🏈United States (default)</button>
-  <button onclick="setPreset('china')">🍵China</button>
-  <button onclick="setPreset('india')">🐘India</button>
-  <button onclick="setPreset('health')">💪Picture of health</button>
-  <button onclick="setPreset('guidelines')">👩‍⚕️Dietary guidelines</button>
+  <button class="tooltip" onclick="setPreset('unitedStates')">🏈United States (default)
+    <div class="tooltiptext">Diet supplied to people in the US</div>
+  </button>
+  <button class="tooltip" onclick="setPreset('china')">🍵China
+    <div class="tooltiptext">Average diet supplied to people in China</div>
+  </button>
+  <button class="tooltip" onclick="setPreset('india')">🐘India
+    <div class="tooltiptext">Average diet supplied to people in India</div>
+  </button>
+  <button class="tooltip" onclick="setPreset('health')">💪Picture of health
+    <div class="tooltiptext">General recommended dietary intake</div>
+  </button>
+  <button class="tooltip" onclick="setPreset('guidelines')">👩‍⚕️Dietary guidelines
+    <div class="tooltiptext">General minimal dietary recommendations</div>
+  </button>
 </div>
 
 <div>
@@ -25,7 +36,7 @@
   <button id="prevBtn" onclick="changeTable(-1)">&#9664;</button>
   
   <div id="ratiosTableContainer" class="table-wrapper">
-    <h2>Portion of your staple calories that need to come from protein foods:</h2>
+    <h2>Portion of staple calories that need to come from protein foods:</h2>
     <table id="ratiosTable">
       <thead>
         <tr id="carbHeaderRow1">
@@ -105,33 +116,9 @@
   <button id="nextBtn" onclick="changeTable(1)">&#9654;</button>
 </div>
 
-<!-- <div class="table-container">
-  <button id="prevBtn" onclick="changeTable(-1)">&#9664;</button>
+<div class="table-container">
   
-  <div class="color-legend">
-    <div class="legend-item">
-      <div class="color-box" style="background-color: rgba(255, 0, 0, 0.5);"></div>
-      <span>Above current total global per capita emissions (5.0 tCO2e)</span>
-    </div>
-    <div class="legend-item">
-      <div class="color-box" style="background-color: rgba(255, 165, 0, 0.5);"></div>
-      <span>More than double net-zero 2050 food emissions target (2.6 - 5.0 tCO2e)</span>
-    </div>
-    <div class="legend-item">
-      <div class="color-box" style="background-color: rgba(255, 255, 0, 0.5);"></div>
-      <span>Greater than the net-zero 2050 food emissions target (1.3 - 2.6 tCO2e)</span>
-    </div>
-    <div class="legend-item">
-      <div class="color-box" style="background-color: rgba(0, 128, 0, 0.5);"></div>
-      <span>Below the net-zero 2050 food target (less than 1.3 tCO2e)</span>
-    </div>
-    <div class="legend-item">
-      <div class="color-box" style="background-color: rgba(64, 128, 192, 0.5);"></div>
-      <span>Safely below the net-zero 2050 food target (less than 0.7 tCO2e)</span>
-    </div>
-  </div>
-  
-  <div class="color-legend">
+  <div id="ratiosLegendContainer" class="color-legend">
     <div class="legend-item">
       <div class="color-box" style="background-color: rgba(255, 0, 0, 0.5);"></div>
       <span>Above current total global per capita emissions (5.0 tCO2e)</span>
@@ -154,7 +141,7 @@
     </div>
   </div>
 
-  <div class="color-legend">
+  <div id="emissionsLegendContainer" class="color-legend">
     <div class="legend-item">
       <div class="color-box" style="background-color: rgba(255, 0, 0, 0.5);"></div>
       <span>Above current total global per capita emissions (5.0 tCO2e)</span>
@@ -176,11 +163,102 @@
       <span>Safely below the net-zero 2050 food target (less than 0.7 tCO2e)</span>
     </div>
   </div>
-  <button id="nextBtn" onclick="changeTable(1)">&#9654;</button>
-</div> -->
+  
+  <div id="landuseLegendContainer" class="color-legend">
+    <div class="legend-item">
+      <div class="color-box" style="background-color: rgba(255, 0, 0, 0.5);"></div>
+      <span>Above current total global per capita emissions (5.0 tCO2e)</span>
+    </div>
+    <div class="legend-item">
+      <div class="color-box" style="background-color: rgba(255, 165, 0, 0.5);"></div>
+      <span>More than double net-zero 2050 food emissions target (2.6 - 5.0 tCO2e)</span>
+    </div>
+    <div class="legend-item">
+      <div class="color-box" style="background-color: rgba(255, 255, 0, 0.5);"></div>
+      <span>Greater than the net-zero 2050 food emissions target (1.3 - 2.6 tCO2e)</span>
+    </div>
+    <div class="legend-item">
+      <div class="color-box" style="background-color: rgba(0, 128, 0, 0.5);"></div>
+      <span>Below the net-zero 2050 food target (less than 1.3 tCO2e)</span>
+    </div>
+    <div class="legend-item">
+      <div class="color-box" style="background-color: rgba(64, 128, 192, 0.5);"></div>
+      <span>Safely below the net-zero 2050 food target (less than 0.7 tCO2e)</span>
+    </div>
+  </div>
+
+  <div id="ethicalLegendContainer" class="color-legend">
+    <div class="legend-item">
+      <div class="color-box" style="background-color: rgba(255, 0, 0, 0.5);"></div>
+      <span>Above current total global per capita emissions (5.0 tCO2e)</span>
+    </div>
+    <div class="legend-item">
+      <div class="color-box" style="background-color: rgba(255, 165, 0, 0.5);"></div>
+      <span>More than double net-zero 2050 food emissions target (2.6 - 5.0 tCO2e)</span>
+    </div>
+    <div class="legend-item">
+      <div class="color-box" style="background-color: rgba(255, 255, 0, 0.5);"></div>
+      <span>Greater than the net-zero 2050 food emissions target (1.3 - 2.6 tCO2e)</span>
+    </div>
+    <div class="legend-item">
+      <div class="color-box" style="background-color: rgba(0, 128, 0, 0.5);"></div>
+      <span>Below the net-zero 2050 food target (less than 1.3 tCO2e)</span>
+    </div>
+    <div class="legend-item">
+      <div class="color-box" style="background-color: rgba(64, 128, 192, 0.5);"></div>
+      <span>Safely below the net-zero 2050 food target (less than 0.7 tCO2e)</span>
+    </div>
+  </div>
+
+  <div id="sustainabilityLegendContainer" class="color-legend">
+    <div class="legend-item">
+      <div class="color-box" style="background-color: rgba(255, 0, 0, 0.5);"></div>
+      <span>Above current total global per capita emissions (5.0 tCO2e)</span>
+    </div>
+    <div class="legend-item">
+      <div class="color-box" style="background-color: rgba(255, 165, 0, 0.5);"></div>
+      <span>More than double net-zero 2050 food emissions target (2.6 - 5.0 tCO2e)</span>
+    </div>
+    <div class="legend-item">
+      <div class="color-box" style="background-color: rgba(255, 255, 0, 0.5);"></div>
+      <span>Greater than the net-zero 2050 food emissions target (1.3 - 2.6 tCO2e)</span>
+    </div>
+    <div class="legend-item">
+      <div class="color-box" style="background-color: rgba(0, 128, 0, 0.5);"></div>
+      <span>Below the net-zero 2050 food target (less than 1.3 tCO2e)</span>
+    </div>
+    <div class="legend-item">
+      <div class="color-box" style="background-color: rgba(64, 128, 192, 0.5);"></div>
+      <span>Safely below the net-zero 2050 food target (less than 0.7 tCO2e)</span>
+    </div>
+  </div>
+
+  <div id="salvadorScoreLegendContainer" class="color-legend">
+    <div class="legend-item">
+      <div class="color-box" style="background-color: rgba(255, 0, 0, 0.5);"></div>
+      <span>Above current total global per capita emissions (5.0 tCO2e)</span>
+    </div>
+    <div class="legend-item">
+      <div class="color-box" style="background-color: rgba(255, 165, 0, 0.5);"></div>
+      <span>More than double net-zero 2050 food emissions target (2.6 - 5.0 tCO2e)</span>
+    </div>
+    <div class="legend-item">
+      <div class="color-box" style="background-color: rgba(255, 255, 0, 0.5);"></div>
+      <span>Greater than the net-zero 2050 food emissions target (1.3 - 2.6 tCO2e)</span>
+    </div>
+    <div class="legend-item">
+      <div class="color-box" style="background-color: rgba(0, 128, 0, 0.5);"></div>
+      <span>Below the net-zero 2050 food target (less than 1.3 tCO2e)</span>
+    </div>
+    <div class="legend-item">
+      <div class="color-box" style="background-color: rgba(64, 128, 192, 0.5);"></div>
+      <span>Safely below the net-zero 2050 food target (less than 0.7 tCO2e)</span>
+    </div>
+  </div>
+</div>
 
 <div class="radiocontainer">
-  Datset values to use:
+  Dataset values to use (only change some tables):
   <input type="radio" id="low" name="average" value="lower">
   <label for="low">low</label>
   <input type="radio" id="median" name="average" value="median" checked="checked">
@@ -191,6 +269,7 @@
   <label for="high">high</label>
 </div>
 
+<p>Choose your own numbers:</p>
 <div class="slidecontainer">
   <p>Protein supply:</p>
   <input type="range" min="50" max="150" class="slider" id="proteinRange">
