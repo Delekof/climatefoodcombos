@@ -1,82 +1,114 @@
 function displayProteinFoods() {
   let kappa = (proteinRange.value - fruitVegRange.value * 5 / 400) / (calorieRange.value - emptycalorieRange.value - fruitVegRange.value);
-  let tableBody = document.querySelector('#ratiosTable tbody');
-  let carbHeaderRow = document.getElementById('carbHeaderRow');
-
-  let tableBody2 = document.querySelector('#emissionsTable tbody');
-  let carbHeaderRow2 = document.getElementById('carbHeaderRow2');
   
-  let tableBody3 = document.querySelector('#landuseTable tbody');
-  let carbHeaderRow3 = document.getElementById('carbHeaderRow3');
+  let tables = [
+    "#ratiosTable tbody",
+    '#emissionsTable tbody',
+    '#landuseTable tbody',
+    '#ethicalTable tbody',
+    '#sustainabilityTable tbody',
+    '#salvadorScoreTable tbody',
+  ];
 
-  tableBody.innerHTML = ''; // Clear previous rows
-  tableBody2.innerHTML = ''; // Clear previous rows
-  tableBody3.innerHTML = ''; // Clear previous rows
+  let headerRows = [
+    'carbHeaderRow1',
+    'carbHeaderRow2',
+    'carbHeaderRow3',
+    'carbHeaderRow4',
+    'carbHeaderRow5',
+    'carbHeaderRow6',
+  ];
 
-  // Clear and rebuild the header row
-  carbHeaderRow.innerHTML = '<th>Protein/Carb</th>';
-  carbFoods.forEach(carbFood => {
-    let th = document.createElement('th');
-    th.textContent = carbFood;
-    carbHeaderRow.appendChild(th);
-  });
+  let tableIndex = 0;
+  let cells = [];
 
-  // Clear and rebuild the header row
-  carbHeaderRow2.innerHTML = '<th>Protein/Carb</th>';
-  carbFoods.forEach(carbFood => {
-    let th = document.createElement('th');
-    th.textContent = carbFood;
-    carbHeaderRow2.appendChild(th);
-  });
+  for (let table of tables) {
+    let tableBody = document.querySelector(table);
+    let carbHeaderRow = document.getElementById(headerRows[tableIndex]);
+    tableBody.innerHTML = ''; // Clear previous rows
 
-  carbHeaderRow3.innerHTML = '<th>Protein/Carb</th>';
-  carbFoods.forEach(carbFood => {
-    let th = document.createElement('th');
-    th.textContent = carbFood;
-    carbHeaderRow3.appendChild(th);
-  });
-
-  proteinFoods.forEach(proteinFood => {
-    let row = tableBody.insertRow();
-    let cell1 = row.insertCell(0);
-    cell1.textContent = proteinFood;
-
-    let row2 = tableBody2.insertRow();
-    let cell2 = row2.insertCell(0);
-    cell2.textContent = proteinFood;
-
-    let row3 = tableBody3.insertRow();
-    let cell3 = row3.insertCell(0);
-    cell3.textContent = proteinFood;
-
+    // Clear and rebuild the header row
+    carbHeaderRow.innerHTML = '<th>Protein/Carb</th>';
     carbFoods.forEach(carbFood => {
-      let cell = row.insertCell();
-      let cell2 = row2.insertCell();
-      let cell3 = row3.insertCell();
-      let proteinRatio = calculateProteinRatio(proteinFood, carbFood, kappa);
+      let th = document.createElement('th');
+      th.textContent = carbFood;
+      carbHeaderRow.appendChild(th);
+    });
 
-      if (isNaN(proteinRatio)) {
-        cell.textContent = "F";
-        cell.style.backgroundColor = `rgba(123, 123, 123,1)`;
-        cell2.textContent = "F";
-        cell2.style.backgroundColor = `rgba(123, 123, 123,1)`;
-        cell3.textContent = "F";
-        cell3.style.backgroundColor = `rgba(123, 123, 123,1)`;
-      } else {
-        let emissionRatio = calculateRatioEmissions(proteinFood, carbFood, proteinRatio);
-        cell.textContent = String((100 * proteinRatio).toFixed(0)) + "%";
-        let colorValue = Math.round(proteinRatio * 100);
-        cell.style.backgroundColor = `rgba(0, 123, 107, ${colorValue / 100})`; // Greenish color
-        cell2.style.backgroundColor = getColorForEmissionRatio(emissionRatio);
-        cell2.textContent = emissionRatio.toFixed(2);
+    cells[tableIndex] = [];
 
-        let landuseRatio = calculateRatioLanduse(proteinFood, carbFood, proteinRatio);
-        cell3.style.backgroundColor = getColorForLanduseRatio(landuseRatio);
-        cell3.textContent = landuseRatio.toFixed(2);
-      }
+    proteinFoods.forEach((proteinFood, proteinIndex) => {
+      let row = tableBody.insertRow();
+      let cell = row.insertCell(0);
+      cell.textContent = proteinFood;
+      
+      cells[tableIndex][proteinIndex] = [];
+
+      carbFoods.forEach((carbFood, carbIndex) => {
+        let cell = row.insertCell(carbIndex + 1);
+        cells[tableIndex][proteinIndex][carbIndex] = cell;
+      });
+    });
+
+    tableIndex += 1;
+  }
+
+  proteinFoods.forEach((proteinFood, proteinIndex) => {
+    carbFoods.forEach((carbFood, carbIndex) => {
+      tables.forEach((table, tableIndex) => {
+        let cell = cells[tableIndex][proteinIndex][carbIndex];
+
+        let proteinRatio = calculateProteinRatio(proteinFood, carbFood, kappa);
+
+        if (isNaN(proteinRatio)) {
+          cell.textContent = "F";
+          cell.style.backgroundColor = `rgba(123, 123, 123,1)`;
+        } else {
+          let emissionRatio = calculateRatioEmissions(proteinFood, carbFood, proteinRatio);
+          cell.textContent = String((100 * proteinRatio).toFixed(0)) + "%";
+          cell.style.backgroundColor = getColorForProteinRatio(proteinRatio)[0];
+
+          if (tableIndex === 1) {
+            cell.style.backgroundColor = getColorForEmissionRatio(emissionRatio)[0];
+            cell.textContent = emissionRatio.toFixed(2);
+          }
+
+          if (tableIndex === 2) {
+            let landuseRatio = calculateRatioLanduse(proteinFood, carbFood, proteinRatio);
+            cell.style.backgroundColor = getColorForLanduseRatio(landuseRatio)[0];
+            cell.textContent = landuseRatio.toFixed(2);
+          }
+
+          if (tableIndex === 3) {
+            let ethicalScore = sustainabilityData[proteinFood].ethical*sustainabilityData[carbFood].ethical
+            cell.style.backgroundColor = getColorForEthicalScore(ethicalScore);
+            cell.textContent = ethicalScore
+          }
+
+          if (tableIndex === 4) {
+            let sustainabilityScore = sustainabilityData[proteinFood].ecologicallySustainable+sustainabilityData[carbFood].ecologicallySustainable;
+            cell.style.backgroundColor = getColorForEthicalScore(sustainabilityScore);
+            cell.textContent = sustainabilityScore
+          }
+
+          if (tableIndex === 5) {
+            let emissionRatio = calculateRatioEmissions(proteinFood, carbFood, proteinRatio);
+            let landuseRatio = calculateRatioLanduse(proteinFood, carbFood, proteinRatio);
+            let sustainabilityScore = sustainabilityData[proteinFood].ecologicallySustainable+sustainabilityData[carbFood].ecologicallySustainable;
+            let ethicalScore = sustainabilityData[proteinFood].ethical*sustainabilityData[carbFood].ethical
+            let emissionRatioScore = getColorForEmissionRatio(emissionRatio)[1];
+            let proteinRatioScore = getColorForProteinRatio(proteinRatio)[1];
+            let landuseRatioScore = getColorForLanduseRatio(landuseRatio)[1];
+            let salvadorScore = (emissionRatioScore*10 + landuseRatioScore*4 + proteinRatioScore + ethicalScore*2 + sustainabilityScore*2)/4
+            cell.style.backgroundColor = getColorForEthicalScore(salvadorScore*4/18);
+            cell.textContent = salvadorScore
+          }
+        }
+      });
     });
   });
 }
+
 
 function getColorForEmissionRatio(emissionRatio) {
   const globalPerCapitaEmissions = 5;
@@ -84,32 +116,60 @@ function getColorForEmissionRatio(emissionRatio) {
   if (isNaN(emissionRatio)) {
     return `grey`
   } else if (emissionRatio > globalPerCapitaEmissions) {
-    return 'rgba(255, 0, 0, 0.5)';
+    return ['rgba(255, 0, 0, 0.5)',0];
   } else if (emissionRatio.toFixed(2) > 2 * requiredPerCapitaEmissions2050) {
-    return 'rgba(255, 165, 0, 0.5)';
+    return ['rgba(255, 165, 0, 0.5)',2];
   } else if (emissionRatio.toFixed(2) > requiredPerCapitaEmissions2050) {
-    return 'rgba(255, 255, 0, 0.5)';
+    return ['rgba(255, 255, 0, 0.5)',2];
   } else if (emissionRatio.toFixed(2) > requiredPerCapitaEmissions2050 / 2) {
-    return 'rgba(0, 128, 0, 0.5)';
+    return ['rgba(0, 128, 0, 0.5)',3];
   } else {
-    return 'rgba(64, 128, 192, 0.5)';
+    return ['rgba(64, 128, 192, 0.5)',4];
   }
 }
 
-function getColorForLanduseRatio(emissionRatio) {
+function getColorForLanduseRatio(landuseRatio) {
   const globalPerCapitaEmissions = .61;
-  if (isNaN(emissionRatio)) {
+  if (isNaN(landuseRatio)) {
     return `grey`
-  } else if (emissionRatio.toFixed(2) > globalPerCapitaEmissions) {
-    return 'rgba(255, 0, 0, 0.5)';
-  } else if (emissionRatio.toFixed(2) > globalPerCapitaEmissions*.75) {
-    return 'rgba(255, 165, 0, 0.5)';
-  } else if (emissionRatio.toFixed(2) > globalPerCapitaEmissions*.5) {
-    return 'rgba(255, 255, 0, 0.5)';
-  } else if (emissionRatio.toFixed(2) > globalPerCapitaEmissions*.25) {
-    return 'rgba(0, 128, 0, 0.5)';
+  } else if (landuseRatio.toFixed(2) > globalPerCapitaEmissions) {
+    return ['rgba(255, 0, 0, 0.5)',0];
+  } else if (landuseRatio.toFixed(2) > globalPerCapitaEmissions*.75) {
+    return ['rgba(255, 165, 0, 0.5)',1];
+  } else if (landuseRatio.toFixed(2) > globalPerCapitaEmissions*.5) {
+    return ['rgba(255, 255, 0, 0.5)',2];
+  } else if (landuseRatio.toFixed(2) > globalPerCapitaEmissions*.25) {
+    return ['rgba(0, 128, 0, 0.5)',3];
   } else {
-    return 'rgba(64, 128, 192, 0.5)';
+    return ['rgba(64, 128, 192, 0.5)',4];
+  }
+}
+
+function getColorForProteinRatio(proteinRatio) {
+  if (isNaN(proteinRatio)) {
+    return `grey`;
+  } else if (Math.abs(proteinRatio - 0.3) <= .15) {
+    return ['rgba(0, 128, 0, 0.5)',2]; // Green
+  } else if (Math.abs(proteinRatio - 0.3) <= .3) {
+    return ['rgba(255, 255, 0, 0.5)',1]; // Yellow
+  } else if (Math.abs(proteinRatio - 0.3) > .3) {
+    return ['rgba(255, 0, 0, 0.5)',0]; // Red
+  }
+}
+
+function getColorForEthicalScore(ethicalScore) {
+  if (isNaN(ethicalScore)) {
+    return `grey`;
+  } else if (ethicalScore >= 4) {
+    return 'rgba(64, 128, 192, 0.5)'; // Blue
+  } else if (ethicalScore >= 3) {
+    return 'rgba(0, 128, 0, 0.5)'; // Green
+  } else if (ethicalScore >= 2) {
+    return 'rgba(255, 255, 0, 0.5)'; // Yellow
+  } else if (ethicalScore >= 1) {
+    return 'rgba(255, 165, 0, 0.5)'; // Orange
+  } else {
+    return 'rgba(255, 0, 0, 0.5)'; // Red
   }
 }
 

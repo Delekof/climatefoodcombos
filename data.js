@@ -503,7 +503,7 @@ const sustainabilityData = {
   },
   "Bread": { 
     ethical: 2, // Ethical: Plant-based, generally considered humane
-    ecologicallySustainable: 1 // Depends on agricultural practices, pesticide use, soil health
+    ecologicallySustainable: 2 // Depends on agricultural practices, pesticide use, soil health
   },
   "Potatoes": { 
     ethical: 2, // Ethical: Plant-based, generally considered humane
@@ -511,7 +511,7 @@ const sustainabilityData = {
   },
   "Corn": { 
     ethical: 2, // Ethical: Plant-based, generally considered humane
-    ecologicallySustainable: 1 // Concerns with monocropping, pesticide use, soil depletion
+    ecologicallySustainable: 2 // Concerns with monocropping, pesticide use, soil depletion
   },
   "Cassava": { 
     ethical: 2, // Ethical: Plant-based, generally considered humane

@@ -25,7 +25,7 @@ function setPreset(preset) {
         emptyCalorie: 590,
       },
       health: {
-        protein: 120,
+        protein: 100,
         calorie: 2500,
         fruitVeg: 500,
         emptyCalorie: 0,
