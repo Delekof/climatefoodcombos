@@ -96,14 +96,22 @@ function displayProteinFoods() {
           if (tableIndex === 5) {
             let emissionRatio = calculateRatioEmissions(proteinFood, carbFood, proteinRatio);
             let landuseRatio = calculateRatioLanduse(proteinFood, carbFood, proteinRatio);
-            let sustainabilityScore = sustainabilityData[proteinFood].ecologicallySustainable+sustainabilityData[carbFood].ecologicallySustainable;
-            let ethicalScore = sustainabilityData[proteinFood].ethical*sustainabilityData[carbFood].ethical
             let emissionRatioScore = getColorForEmissionRatio(emissionRatio)[1];
             let proteinRatioScore = getColorForProteinRatio(proteinRatio)[1];
             let landuseRatioScore = getColorForLanduseRatio(landuseRatio)[1];
-            let salvadorScore = (emissionRatioScore*10 + landuseRatioScore*4 + proteinRatioScore + ethicalScore*2 + sustainabilityScore*2)/4
-            cell.style.backgroundColor = getColorForEthicalScore(salvadorScore*4/18);
-            cell.textContent = salvadorScore
+            if (proteinRatio == 0){
+              let ethicalScore = sustainabilityData[carbFood].ethical*2
+              let sustainabilityScore = sustainabilityData[carbFood].ecologicallySustainable*2;
+              let salvadorScore = (emissionRatioScore*10 + landuseRatioScore*4 + proteinRatioScore + ethicalScore*2 + sustainabilityScore*2)/4
+              cell.style.backgroundColor = getColorForEthicalScore(salvadorScore*4/18);
+              cell.textContent = salvadorScore
+            } else{
+              let ethicalScore = sustainabilityData[proteinFood].ethical*sustainabilityData[carbFood].ethical
+              let sustainabilityScore = sustainabilityData[proteinFood].ecologicallySustainable+sustainabilityData[carbFood].ecologicallySustainable;
+              let salvadorScore = (emissionRatioScore*10 + landuseRatioScore*4 + proteinRatioScore + ethicalScore*2 + sustainabilityScore*2)/4
+              cell.style.backgroundColor = getColorForEthicalScore(salvadorScore*4/18);
+              cell.textContent = salvadorScore
+            }
           }
         }
       });
@@ -198,17 +206,9 @@ let currentTableIndex = 0;
 const tables = document.querySelectorAll('.table-wrapper');
 const legends = document.querySelectorAll('.color-legend');
 
-function changeLegend() {
-  legends[currentTableIndex].classList.remove('active');
-  if (currentTableIndex < 0) {
-    currentTableIndex = tables.length - 1;
-  } else if (currentTableIndex >= tables.length) {
-    currentTableIndex = 0;
-  }
-}
-
 function changeTable(direction) {
   tables[currentTableIndex].classList.remove('active');
+  legends[currentTableIndex].classList.remove('active');
   currentTableIndex += direction;
 
   if (currentTableIndex < 0) {
@@ -217,9 +217,8 @@ function changeTable(direction) {
     currentTableIndex = 0;
   }
 
-  changeLegend()
-
   tables[currentTableIndex].classList.add('active');
+  legends[currentTableIndex].classList.add('active');
 }
 
 function updateButtons() {
@@ -229,6 +228,7 @@ function updateButtons() {
 
 // Initial display
 tables[currentTableIndex].classList.add('active');
+legends[currentTableIndex].classList.add('active');
 updateButtons();
 
 // Initial display on page load
