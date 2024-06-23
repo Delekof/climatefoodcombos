@@ -44,21 +44,21 @@ function calculateProteinPerKcal(data) {
   }
   
   function calculateRatioEmissions(proteinFood, carbFood, kappa) {
-    let calories = (calorieRange.value - emptycalorieRange.value - fruitVegRange.value)
+    let calories = (calorieInput.value - emptycalorieInput.value - fruitVegInput.value)
     let protein_emissions = kappa*calories * nutritional_data[proteinFood].emissions_per_kcal
     let carb_emissions = (1-kappa)*calories * nutritional_data[carbFood].emissions_per_kcal
     //other to be included to account for fruit/veg and empty calorie emissions
-    let other_emissions = (fruitVegRange.value* 0.6/1000 + emptycalorieRange.value* 0.6/1000)*0
+    let other_emissions = (fruitVegInput.value* 0.6/1000 + emptycalorieInput.value* 0.6/1000)*0
     return (protein_emissions + carb_emissions + other_emissions)*365/1000
   }
 
   function calculateRatioLanduse(proteinFood, carbFood, kappa) {
-    let calories = (calorieRange.value - emptycalorieRange.value - fruitVegRange.value)
+    let calories = (calorieInput.value - emptycalorieInput.value - fruitVegInput.value)
     if (isNaN(nutritional_data[proteinFood].landuse_per_kcal)==false && isNaN(nutritional_data[carbFood].landuse_per_kcal)==false){
         let protein_landuse = kappa*calories * nutritional_data[proteinFood].landuse_per_kcal
         let carb_landuse = (1-kappa)*calories * nutritional_data[carbFood].landuse_per_kcal
         //other to be included to account for fruit/veg and empty calorie landuse
-        let other_landuse = (fruitVegRange.value* 0.6/10000 + emptycalorieRange.value* 0.6/10000)*0
+        let other_landuse = (fruitVegInput.value* 0.6/10000 + emptycalorieInput.value* 0.6/10000)*0
         return (protein_landuse + carb_landuse + other_landuse)*365/10000
     } else {
         return NaN

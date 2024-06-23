@@ -1,5 +1,5 @@
 function displayProteinFoods() {
-  let kappa = (proteinRange.value - fruitVegRange.value * 5 / 400) / (calorieRange.value - emptycalorieRange.value - fruitVegRange.value);
+  let kappa = (proteinInput.value - fruitVegInput.value * 5 / 400) / (calorieInput.value - emptycalorieInput.value - fruitVegInput.value);
   
   let tables = [
     "#ratiosTable tbody",
@@ -57,10 +57,14 @@ function displayProteinFoods() {
 
   proteinFoods.forEach((proteinFood, proteinIndex) => {
     carbFoods.forEach((carbFood, carbIndex) => {
+      carbFoodaux = carbFood
+      if (carbFood == "Self") {
+        carbFoodaux = proteinFood
+      }
       tables.forEach((table, tableIndex) => {
         let cell = cells[tableIndex][proteinIndex][carbIndex];
 
-        let proteinRatio = calculateProteinRatio(proteinFood, carbFood, kappa);
+        let proteinRatio = calculateProteinRatio(proteinFood, carbFoodaux, kappa);
         let footnoteMarker = ""
         if (proteinRatio == 0) {
           footnoteMarker="†"
@@ -70,9 +74,11 @@ function displayProteinFoods() {
           cell.textContent = "F";
           cell.style.backgroundColor = `rgba(123, 123, 123,1)`;
         } else {
-          let emissionRatio = calculateRatioEmissions(proteinFood, carbFood, proteinRatio);
-          cell.textContent = String((100 * proteinRatio).toFixed(0)) + "%"+footnoteMarker;
-          cell.style.backgroundColor = getColorForProteinRatio(proteinRatio)[0];
+          let emissionRatio = calculateRatioEmissions(proteinFood, carbFoodaux, proteinRatio);
+          if (tableIndex === 0) {
+            cell.textContent = String((100 * proteinRatio).toFixed(0)) + "%"+footnoteMarker;
+            cell.style.backgroundColor = getColorForProteinRatio(proteinRatio)[0];
+          }
 
           if (tableIndex === 1) {
             cell.style.backgroundColor = getColorForEmissionRatio(emissionRatio)[0];
@@ -80,44 +86,44 @@ function displayProteinFoods() {
           }
 
           if (tableIndex === 2) {
-            let landuseRatio = calculateRatioLanduse(proteinFood, carbFood, proteinRatio);
+            let landuseRatio = calculateRatioLanduse(proteinFood, carbFoodaux, proteinRatio);
             cell.style.backgroundColor = getColorForLanduseRatio(landuseRatio)[0];
             cell.textContent = String(landuseRatio.toFixed(2))+footnoteMarker;
           }
 
           if (tableIndex === 3) {
-            let ethicalScore = sustainabilityData[proteinFood].ethical*sustainabilityData[carbFood].ethical
+            let ethicalScore = sustainabilityData[proteinFood].ethical*sustainabilityData[carbFoodaux].ethical
             if (proteinRatio == 0){
-              ethicalScore = sustainabilityData[carbFood].ethical*2
+              ethicalScore = sustainabilityData[carbFoodaux].ethical*2
             }
             cell.style.backgroundColor = getColorForEthicalScore(ethicalScore);
             cell.textContent = String(ethicalScore)+footnoteMarker
           }
 
           if (tableIndex === 4) {
-            let sustainabilityScore = sustainabilityData[proteinFood].ecologicallySustainable*sustainabilityData[carbFood].ecologicallySustainable;
+            let sustainabilityScore = sustainabilityData[proteinFood].ecologicallySustainable*sustainabilityData[carbFoodaux].ecologicallySustainable;
             if (proteinRatio == 0){
-              sustainabilityScore = sustainabilityData[carbFood].ecologicallySustainable*2
+              sustainabilityScore = sustainabilityData[carbFoodaux].ecologicallySustainable*2
             }
             cell.style.backgroundColor = getColorForEthicalScore(sustainabilityScore);
             cell.textContent = String(sustainabilityScore)+footnoteMarker
           }
 
           if (tableIndex === 5) {
-            let emissionRatio = calculateRatioEmissions(proteinFood, carbFood, proteinRatio);
-            let landuseRatio = calculateRatioLanduse(proteinFood, carbFood, proteinRatio);
+            let emissionRatio = calculateRatioEmissions(proteinFood, carbFoodaux, proteinRatio);
+            let landuseRatio = calculateRatioLanduse(proteinFood, carbFoodaux, proteinRatio);
             let emissionRatioScore = getColorForEmissionRatio(emissionRatio)[1];
             let proteinRatioScore = getColorForProteinRatio(proteinRatio)[1];
             let landuseRatioScore = getColorForLanduseRatio(landuseRatio)[1];
             if (proteinRatio == 0){
-              let ethicalScore = sustainabilityData[carbFood].ethical*2
-              let sustainabilityScore = sustainabilityData[carbFood].ecologicallySustainable*2;
+              let ethicalScore = sustainabilityData[carbFoodaux].ethical*2
+              let sustainabilityScore = sustainabilityData[carbFoodaux].ecologicallySustainable*2;
               let salvadorScore = (emissionRatioScore*10 + landuseRatioScore*4 + proteinRatioScore + ethicalScore*2 + sustainabilityScore*2)/4
               cell.style.backgroundColor = getColorForEthicalScore(salvadorScore*4/18);
               cell.textContent = String(salvadorScore)+footnoteMarker
             } else{
-              let ethicalScore = sustainabilityData[proteinFood].ethical*sustainabilityData[carbFood].ethical
-              let sustainabilityScore = sustainabilityData[proteinFood].ecologicallySustainable*sustainabilityData[carbFood].ecologicallySustainable;
+              let ethicalScore = sustainabilityData[proteinFood].ethical*sustainabilityData[carbFoodaux].ethical
+              let sustainabilityScore = sustainabilityData[proteinFood].ecologicallySustainable*sustainabilityData[carbFoodaux].ecologicallySustainable;
               let salvadorScore = (emissionRatioScore*10 + landuseRatioScore*4 + proteinRatioScore + ethicalScore*2 + sustainabilityScore*2)/4
               cell.style.backgroundColor = getColorForEthicalScore(salvadorScore*4/18);
               cell.textContent = String(salvadorScore)+footnoteMarker
@@ -128,7 +134,6 @@ function displayProteinFoods() {
     });
   });
 }
-
 
 function getColorForEmissionRatio(emissionRatio) {
   const globalPerCapitaEmissions = 5;
@@ -196,23 +201,19 @@ function getColorForEthicalScore(ethicalScore) {
 var radioButtons = document.querySelectorAll('input[name="average"]');
 var averageToUse = document.querySelector('input[name="average"]:checked').value;
 
-var proteinRange = document.getElementById("proteinRange");
 var proteinInput = document.getElementById("proteinInput");
 
-var calorieRange = document.getElementById("calorieRange");
 var calorieInput = document.getElementById("calorieInput");
 
-var emptycalorieRange = document.getElementById("emptycalorieRange");
 var emptycalorieInput = document.getElementById("emptycalorieInput");
 
-var fruitVegRange = document.getElementById("fruitVegRange");
 var fruitVegInput = document.getElementById("fruitVegInput");
 
 var proteinPerCalorieSupply = document.getElementById("proteinpercalorieSupply");
 
-proteinPerCalorieSupply.innerHTML = String((100 * 4 * (proteinRange.value - fruitVegRange.value * 5 / 400) / (calorieRange.value - emptycalorieRange.value - fruitVegRange.value)).toFixed(2)) + "%";
+proteinPerCalorieSupply.innerHTML = String((100 * 4 * (proteinInput.value - fruitVegInput.value * 5 / 400) / (calorieInput.value - emptycalorieInput.value - fruitVegInput.value)).toFixed(2)) + "%";
 
-let currentTableIndex = 0;
+let currentTableIndex = 2;
 const tables = document.querySelectorAll('.table-wrapper');
 const legends = document.querySelectorAll('.color-legend');
 

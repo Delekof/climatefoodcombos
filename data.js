@@ -565,6 +565,7 @@ const proteinFoods = [
 // ];
 
 const carbFoods = [
+  "Self",
   "Bread",
   "Potatoes",
   "Corn",

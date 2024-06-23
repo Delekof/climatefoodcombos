@@ -28,7 +28,7 @@ function setPreset(preset) {
         protein: 100,
         calorie: 2500,
         fruitVeg: 500,
-        emptyCalorie: 0,
+        emptyCalorie: 300,
       },
       guidelines: {
         protein: 56,
@@ -40,16 +40,12 @@ function setPreset(preset) {
   
     const selectedPreset = presets[preset];
   
-    proteinRange.value = selectedPreset.protein;
     proteinInput.value = selectedPreset.protein;
   
-    calorieRange.value = selectedPreset.calorie;
     calorieInput.value = selectedPreset.calorie;
   
-    emptycalorieRange.value = selectedPreset.emptyCalorie;
     emptycalorieInput.value = selectedPreset.emptyCalorie;
   
-    fruitVegRange.value = selectedPreset.fruitVeg;
     fruitVegInput.value = selectedPreset.fruitVeg;
   
     updateProteinPerCalorieSupply();

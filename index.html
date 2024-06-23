@@ -9,7 +9,7 @@
 
 <h1>Climate Food Combos</h1>
 
-<p>Choose a preset from below:</p>
+<p>Choose a diet preset from below:</p>
 <div class="preset-buttons">
   <button class="tooltip" onclick="setPreset('unitedStates')">🏈United States (default)
     <div class="tooltiptext">Diet supplied to people in the US</div>
@@ -28,8 +28,21 @@
   </button>
 </div>
 
+<p>You can see (and choose!) the diet numbers below:</p>
+<div class="slidecontainer">
+  <p>Protein supply:</p>
+  <input type="number" min="50" max="150" id="proteinInput">g
+  <p>Calorie supply:</p>
+  <input type="number" min="2000" max="4000" id="calorieInput">kcal
+  <p>Fruit/Veg supply:</p>
+  <input type="number" min="0" max="1000" id="fruitVegInput">kcal
+  <!-- 810 from oils and fats, 430 from sugar, 140 from alcohol -->
+  <p>"Empty" calories:</p>
+  <input type="number" min="0" max="2000" id="emptycalorieInput">kcal
+</div>
+
 <div>
-  <p>Share of calories (after alcohol, added sugar, added oil, and fruit/veg) that need to come from protein: <span id="proteinpercalorieSupply"></span></p>
+  <p>Share of calories (excluding from alcohol, added sugar, added oil, and fruit/veg) that need to come from protein: <span id="proteinpercalorieSupply"></span></p>
   <p>Combinations marked with "†" have sufficient protein provided by the "low protein" food source</p>
   <div class="radiocontainer">
     Dataset values to use (only change some tables):
@@ -249,32 +262,6 @@
         <span>Sustainable</span>
     </div>
   </div>
-</div>
-
-<p>Choose your own numbers:</p>
-<div class="slidecontainer">
-  <p>Protein supply:</p>
-  <input type="range" min="50" max="150" class="slider" id="proteinRange">
-  <input type="number" min="50" max="150" id="proteinInput">g
-</div>
-
-<div class="slidecontainer">
-  <p>Calorie supply:</p>
-  <input type="range" min="2000" max="4000" class="slider" id="calorieRange">
-  <input type="number" min="2000" max="4000" id="calorieInput">kcal
-</div>
-
-<div class="slidecontainer">
-  <p>Fruit/Veg supply:</p>
-  <input type="range" min="0" max="1000" class="slider" id="fruitVegRange">
-  <input type="number" min="0" max="1000" id="fruitVegInput">kcal
-</div>
-
-<!-- 810 from oils and fats, 430 from sugar, 140 from alcohol -->
-<div class="slidecontainer">
-  <p>"Empty" calories:</p>
-  <input type="range" min="0" max="2000" class="slider" id="emptycalorieRange">
-  <input type="number" min="0" max="2000" id="emptycalorieInput">kcal
 </div>
 
 <p>Data sources:</p>

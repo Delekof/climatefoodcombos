@@ -6,27 +6,27 @@ function updateAverageToUse() {
 }
 
 function updateProteinSupply() {
-  proteinInput.value = proteinRange.value;
+  proteinInput.value = proteinInput.value;
   updateProteinPerCalorieSupply();
 }
 
 function updateCalorieSupply() {
-  calorieInput.value = calorieRange.value;
+  calorieInput.value = calorieInput.value;
   updateProteinPerCalorieSupply();
 }
 
 function updateEmptyCalorieSupply() {
-  emptycalorieInput.value = emptycalorieRange.value;
+  emptycalorieInput.value = emptycalorieInput.value;
   updateProteinPerCalorieSupply();
 }
 
 function updateFruitVegSupply() {
-  fruitVegInput.value = fruitVegRange.value;
+  fruitVegInput.value = fruitVegInput.value;
   updateProteinPerCalorieSupply();
 }
 
 function updateProteinPerCalorieSupply() {
-  proteinPerCalorieSupply.innerHTML = String((100 * 4 * (proteinRange.value - fruitVegRange.value*5/400) / (calorieRange.value - emptycalorieRange.value - fruitVegRange.value)).toFixed(2)) + "%";
+  proteinPerCalorieSupply.innerHTML = String((100 * 4 * (proteinInput.value - fruitVegInput.value*5/400) / (calorieInput.value - emptycalorieInput.value - fruitVegInput.value)).toFixed(2)) + "%";
   displayProteinFoods();
 }
 
@@ -34,28 +34,20 @@ var radioButtons = document.querySelectorAll('input[name="average"]');
 radioButtons.forEach (radio => {
   radio.addEventListener("change", updateAverageToUse)
 });
-proteinRange.oninput = updateProteinSupply;
-calorieRange.oninput = updateCalorieSupply;
-emptycalorieRange.oninput = updateEmptyCalorieSupply;
-fruitVegRange.oninput = updateFruitVegSupply;
 
 proteinInput.onblur = function () {
-  proteinRange.value = this.value;
   updateProteinSupply();
 }
 
 calorieInput.onblur = function () {
-  calorieRange.value = this.value;
   updateCalorieSupply();
 }
 
 emptycalorieInput.onblur = function () {
-  emptycalorieRange.value = this.value;
   updateEmptyCalorieSupply();
 }
 
 fruitVegInput.onblur = function () {
-  fruitVegRange.value = this.value;
   updateFruitVegSupply();
 }
 
