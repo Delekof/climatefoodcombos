@@ -355,92 +355,92 @@ const data_dict = {
 
 const nutritional_data = {
   Bread: {
-    protein: 9.4, // per 100g
-    kcal: 265, // per 100g
+    protein: 9.4, // per 100g cooked
+    kcal: 265, // per 100g cooked
   },
   Corn: {
-    protein: 9.42, // per 100g
-    kcal: 365, // per 100g
+    protein: 9.42, // per 100g cooked
+    kcal: 365, // per 100g cooked
   },
   Oats: {
-    protein: 16.89, // per 100g
-    kcal: 389, // per 100g
+    protein: 16.89, // per 100g cooked
+    kcal: 389, // per 100g cooked
   },
   Rice: {
-    protein: 2.69, // per 100g
-    kcal: 130, // per 100g (cooked)
+    protein: 2.69, // per 100g cooked
+    kcal: 130, // per 100g cooked
   },
   Potatoes: {
-    protein: 2.02, // per 100g
-    kcal: 77, // per 100g (cooked)
+    protein: 2.02, // per 100g cooked
+    kcal: 77, // per 100g cooked
   },
   Cassava: {
-    protein: 1.36, // per 100g
-    kcal: 160, // per 100g
+    protein: 1.36, // per 100g cooked
+    kcal: 160, // per 100g cooked
   },
   "Mixed Pulses": {
-    protein: 7.63, // per 100g (cooked mixed pulses)
-    kcal: 114, // per 100g (cooked mixed pulses)
+    protein: 7.63, // per 100g cooked
+    kcal: 114, // per 100g cooked
   },
   Peas: {
-    protein: 5.42, // per 100g (cooked)
-    kcal: 81, // per 100g (cooked)
+    protein: 8.34, // per 100g cooked
+    kcal: 118, // per 100g cooked
   },
   "Mixed Nuts": {
-    protein: 20.99, // per 100g (mixed nuts)
-    kcal: 607, // per 100g (mixed nuts)
+    protein: 20.99, // per 100g cooked
+    kcal: 607, // per 100g cooked
   },
   Peanuts: {
-    protein: 25.8, // per 100g
-    kcal: 567, // per 100g
+    protein: 25.8, // per 100g cooked
+    kcal: 567, // per 100g cooked
   },
   Tofu: {
-    protein: 8.15, // per 100g
-    kcal: 76, // per 100g
+    protein: 13, // per 100g cooked
+    kcal: 118, // per 100g cooked
   },
   "Beef (dairy herd)": {
-    protein: 26.04, // per 100g (cooked)
-    kcal: 250, // per 100g (cooked)
+    protein: 26.04, // per 100g cooked
+    kcal: 250, // per 100g cooked
   },
   "Beef (beef herd)": {
-    protein: 26.04, // per 100g (cooked)
-    kcal: 250, // per 100g (cooked)
+    protein: 26.04, // per 100g cooked
+    kcal: 250, // per 100g cooked
   },
   Lamb: {
-    protein: 25.6, // per 100g (cooked)
-    kcal: 282, // per 100g (cooked)
+    protein: 25.6, // per 100g cooked
+    kcal: 282, // per 100g cooked
   },
   Pork: {
-    protein: 21.43, // per 100g (cooked)
-    kcal: 242, // per 100g (cooked)
+    protein: 21.43, // per 100g cooked
+    kcal: 242, // per 100g cooked
   },
   Chicken: {
-    protein: 25.98, // per 100g (cooked)
-    kcal: 239, // per 100g (cooked)
+    protein: 25.98, // per 100g cooked
+    kcal: 239, // per 100g cooked
   },
   Cheese: {
-    protein: 24.99, // per 100g
-    kcal: 402, // per 100g
+    protein: 24.99, // per 100g cooked
+    kcal: 402, // per 100g cooked
   },
   Eggs: {
-    protein: 12.58, // per 100g
-    kcal: 155, // per 100g
+    protein: 12.58, // per 100g cooked
+    kcal: 155, // per 100g cooked
   },
   "Farmed Fish": {
-    protein: 18.76, // per 100g (salmon, farmed)
-    kcal: 206, // per 100g (salmon, farmed)
+    protein: 18.76, // per 100g cooked
+    kcal: 206, // per 100g cooked
   },
   "Farmed Shrimp": {
-    protein: 20.03, // per 100g (shrimp)
-    kcal: 83, // per 100g (shrimp)
+    protein: 20.03, // per 100g cooked
+    kcal: 83, // per 100g cooked
   },
   "Quorn vegan pieces*": {
-    protein: 15.3,
-    kcal: 94,
+    protein: 15.3, // per 100g cooked
+    kcal: 94, // per 100g cooked
   },
   "Planted chicken*": {
-    protein: 24,
-    kcal: 151
+    protein: 24, // per 100g cooked
+    kcal: 151, // per 100g cooked
   },
 };
 
