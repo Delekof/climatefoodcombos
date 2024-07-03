@@ -41,6 +41,8 @@ function displayProteinFoods() {
       button.style.padding = 0
       button.addEventListener('click', () => {
         console.log(`${carbFood} button clicked`);
+        document.getElementById('overlayTitle').innerText = carbFood;
+        document.getElementById('overlay').style.display = 'flex';
       });
       th.appendChild(button)
     });
@@ -62,6 +64,8 @@ function displayProteinFoods() {
 
       button.addEventListener('click', () => {
         console.log(`${proteinFood} button clicked`);
+        document.getElementById('overlayTitle').innerText = proteinFood;
+        document.getElementById('overlay').style.display = 'flex';
       });
       cell.appendChild(button)
 
@@ -76,6 +80,8 @@ function displayProteinFoods() {
         button.style.width="80px"
         button.addEventListener('click', () => {
           console.log(`${carbFood}-${proteinFood} button clicked`);
+          document.getElementById('overlayTitle').innerText = `${carbFood} with ${proteinFood}`;
+          document.getElementById('overlay').style.display = 'flex';
         });
         cell.appendChild(button)
 
@@ -330,4 +336,15 @@ function updateIndicators() {
 
 document.addEventListener('DOMContentLoaded', () => {
   createIndicators();
+});
+
+document.getElementById('closeOverlayBtn').addEventListener('click', function() {
+  document.getElementById('overlay').style.display = 'none';
+});
+
+// Optional: Close the overlay when clicking outside of the content area
+document.getElementById('overlay').addEventListener('click', function(event) {
+  if (event.target === this) {
+      this.style.display = 'none';
+  }
 });
