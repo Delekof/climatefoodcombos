@@ -82,3 +82,9 @@ document.addEventListener("keydown", function (event) {
     changeTable(1)
   }
 });
+
+document.addEventListener("keydown", function (event) {
+  if (event.keyCode === 27) {
+    document.getElementById('overlay').style.display = 'none';
+  }
+});
