@@ -77,18 +77,15 @@ function updateCharts(carbFood, proteinFood, kappa=kappa) {
     let proteinRatio = calculateProteinRatio(proteinFood, carbFoodaux, kappa)
     let emissionRatio = calculateRatioEmissions(proteinFood, carbFoodaux, proteinRatio);
     
-    const newData1 = [proteinRatio.toFixed(2), (1-proteinRatio).toFixed(2), fruitVegInput.value/(calorieInput.value - emptycalorieInput.value)];
+    const newData1 = [proteinRatio.toFixed(3), (1-proteinRatio).toFixed(3), fruitVegInput.value/(calorieInput.value - emptycalorieInput.value)];
     const newLabels = [proteinFood, carbFoodaux, "fruit/veg"];
 
     let vegWeight = .4*(fruitVegInput.value/(calorieInput.value - emptycalorieInput.value - fruitVegInput.value))
     let totalWeight = proteinRatio/nutritional_data[proteinFood].kcal + (1-proteinRatio)/nutritional_data[carbFoodaux].kcal + vegWeight
-    console.log(((proteinRatio/nutritional_data[proteinFood].kcal)/totalWeight).toFixed(2),
-    (((1-proteinRatio)/nutritional_data[carbFoodaux].kcal)/totalWeight).toFixed(2),
-    (vegWeight).toFixed(2),)
     const newData2 = [
-        ((proteinRatio/nutritional_data[proteinFood].kcal)/totalWeight).toFixed(2),
-        (((1-proteinRatio)/nutritional_data[carbFoodaux].kcal)/totalWeight).toFixed(2),
-        (vegWeight).toFixed(2),
+        ((proteinRatio/nutritional_data[proteinFood].kcal)/totalWeight).toFixed(3),
+        (((1-proteinRatio)/nutritional_data[carbFoodaux].kcal)/totalWeight).toFixed(3),
+        (vegWeight).toFixed(3),
     ];
 
     const newColors = [
