@@ -35,11 +35,11 @@ function displayProteinFoods() {
       let th = document.createElement('th');
       carbHeaderRow.appendChild(th);
       th.textContent = carbFood
-      th.addEventListener('click', () => {
-        console.log(`${carbFood} button clicked`);
-        document.getElementById('overlayTitle').innerText = carbFood;
-        document.getElementById('overlay').style.display = 'flex';
-      });
+      // th.addEventListener('click', () => {
+      //   console.log(`${carbFood} button clicked`);
+      //   document.getElementById('overlayTitle').innerText = carbFood;
+      //   document.getElementById('overlay').style.display = 'flex';
+      // });
     });
 
     cells[tableIndex] = [];
@@ -51,11 +51,11 @@ function displayProteinFoods() {
       cell.textContent = proteinFood
       cell.style.color = "white"
 
-      cell.addEventListener('click', () => {
-        console.log(`${proteinFood} button clicked`);
-        document.getElementById('overlayTitle').innerText = proteinFood;
-        document.getElementById('overlay').style.display = 'flex';
-      });
+      // cell.addEventListener('click', () => {
+      //   console.log(`${proteinFood} button clicked`);
+      //   document.getElementById('overlayTitle').innerText = proteinFood;
+      //   document.getElementById('overlay').style.display = 'flex';
+      // });
 
       cells[tableIndex][proteinIndex] = [];
 

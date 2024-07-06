@@ -371,10 +371,10 @@ const nutritional_data = {
     }
   },
   Oats: {
-    protein: 1.89, // per 100g cooked
+    protein: 2.5, // per 100g cooked
     kcal: 71, // per 100g cooked
     portion: {
-      grams: 150, // typical portion size in grams
+      grams: 234, // typical portion size in grams
       description: "cup" // description of the portion
     }
   },
