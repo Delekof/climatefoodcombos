@@ -159,19 +159,6 @@ td {
   color: #004d40;
 }
 
-.color-legend {
-  display: flex;
-  flex-direction: column;
-  margin-top: 20px;
-  align-items: center;
-}
-
-.legend-item {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
 .color-box {
   width: 20px;
   height: 20px;
@@ -231,11 +218,6 @@ td {
   display: block;
 }
 
-.legend-item {
-  align-items: center;
-  margin-bottom: 10px;
-}
-
 .color-box {
   width: 20px;
   height: 20px;
@@ -288,7 +270,7 @@ td {
   border-radius: 5px;
   position: relative;
   width: 80%;
-  max-width: 500px;
+  max-width: 800px;
   text-align: center;
 }
 
@@ -298,4 +280,42 @@ td {
   right: 10px;
   font-size: 24px;
   cursor: pointer;
+}
+
+#chart-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.chart-wrapper {
+  flex: 1 1 45%; /* Flex grow, shrink, and basis (percentage of container) */
+  margin: 10px;
+  max-width: 45%;
+}
+canvas {
+  width: 100% !important;
+  height: auto !important;
+}
+
+#legend-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px auto;
+  width: 100%;
+}
+#legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.legend-item {
+  margin: 0 10px;
+  display: flex;
+  align-items: center;
+}
+.legend-color {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
 }

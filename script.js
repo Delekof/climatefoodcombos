@@ -1,5 +1,7 @@
+var kappa
+
 function displayProteinFoods() {
-  let kappa = (proteinInput.value - fruitVegInput.value * 5 / 400) / (calorieInput.value - emptycalorieInput.value - fruitVegInput.value);
+  kappa = (proteinInput.value - fruitVegInput.value * 5 / 400) / (calorieInput.value - emptycalorieInput.value - fruitVegInput.value);
   
   let tables = [
     "#ratiosTable tbody",
@@ -21,7 +23,6 @@ function displayProteinFoods() {
 
   let tableIndex = 0;
   let cells = [];
-  // let buttons = [];
 
   for (let table of tables) {
     let tableBody = document.querySelector(table);
@@ -33,68 +34,46 @@ function displayProteinFoods() {
     carbFoods.forEach(carbFood => {
       let th = document.createElement('th');
       carbHeaderRow.appendChild(th);
-      // let button = document.createElement('button');
       th.textContent = carbFood
-      // button.style.backgroundColor = "#00796b"
-      // button.style.color = "white"
-      // button.style.margin = 0
-      // button.style.padding = 0
       th.addEventListener('click', () => {
         console.log(`${carbFood} button clicked`);
         document.getElementById('overlayTitle').innerText = carbFood;
         document.getElementById('overlay').style.display = 'flex';
       });
-      // th.appendChild(button)
     });
 
     cells[tableIndex] = [];
-    // buttons[tableIndex] = [];
 
     proteinFoods.forEach((proteinFood, proteinIndex) => {
       let row = tableBody.insertRow();
       let cell = row.insertCell(0);
       cell.style.backgroundColor = "#00796b"
-      // let button = document.createElement('button');
       cell.textContent = proteinFood
-      // button.style.backgroundColor = "#00796b"
       cell.style.color = "white"
-      // button.style.margin = 0
-      // button.style.padding = 0
-      // button.style.width="80px"
 
       cell.addEventListener('click', () => {
         console.log(`${proteinFood} button clicked`);
         document.getElementById('overlayTitle').innerText = proteinFood;
         document.getElementById('overlay').style.display = 'flex';
       });
-      // cell.appendChild(button)
 
       cells[tableIndex][proteinIndex] = [];
-      // buttons[tableIndex][proteinIndex] = [];
 
       carbFoods.forEach((carbFood, carbIndex) => {
         let cell = row.insertCell(carbIndex + 1);
-        // let button = document.createElement('button');
-        // button.style.margin = 0
-        // button.style.padding = 1
-        // button.style.width="80px"
         cell.addEventListener('click', () => {
-          console.log(`${carbFood}-${proteinFood} button clicked`);
+          foodComboPopout(carbFood, proteinFood);
           document.getElementById('overlayTitle').innerText = `${carbFood} with ${proteinFood}`;
           document.getElementById('overlay').style.display = 'flex';
         });
-        // cell.appendChild(button)
 
         cells[tableIndex][proteinIndex][carbIndex] = cell;
-        // buttons[tableIndex][proteinIndex][carbIndex] = button;
         
       });
     });
 
     tableIndex += 1;
   }
-
-  // console.log(buttons)
 
   proteinFoods.forEach((proteinFood, proteinIndex) => {
     carbFoods.forEach((carbFood, carbIndex) => {
@@ -104,7 +83,6 @@ function displayProteinFoods() {
       }
       tables.forEach((table, tableIndex) => {
         let cell = cells[tableIndex][proteinIndex][carbIndex];
-        // let button = buttons[tableIndex][proteinIndex][carbIndex];
 
         let proteinRatio = calculateProteinRatio(proteinFood, carbFoodaux, kappa);
         let footnoteMarker = ""
@@ -115,25 +93,21 @@ function displayProteinFoods() {
         if (isNaN(proteinRatio)) {
           cell.textContent = "F";
           cell.style.backgroundColor = `rgba(123, 123, 123,1)`;
-          // button.style.backgroundColor = `rgba(123, 123, 123,1)`;
         } else {
           let emissionRatio = calculateRatioEmissions(proteinFood, carbFoodaux, proteinRatio);
           if (tableIndex === 0) {
             cell.textContent = String((100 * proteinRatio).toFixed(0)) + "%"+footnoteMarker;
             cell.style.backgroundColor = getColorForProteinRatio(proteinRatio)[0];
-            // button.style.backgroundColor = 'rgba(0, 0, 0, 0)'
           }
 
           if (tableIndex === 1) {
             cell.style.backgroundColor = getColorForEmissionRatio(emissionRatio)[0];
-            // button.style.backgroundColor = 'rgba(0, 0, 0, 0)'
             cell.textContent = String(emissionRatio.toFixed(2))+footnoteMarker;
           }
 
           if (tableIndex === 2) {
             let landuseRatio = calculateRatioLanduse(proteinFood, carbFoodaux, proteinRatio);
             cell.style.backgroundColor = getColorForLanduseRatio(landuseRatio)[0];
-            // button.style.backgroundColor = 'rgba(0, 0, 0, 0)'
             cell.textContent = String(landuseRatio.toFixed(2))+footnoteMarker;
           }
 
@@ -143,7 +117,6 @@ function displayProteinFoods() {
               ethicalScore = sustainabilityData[carbFoodaux].ethical*2
             }
             cell.style.backgroundColor = getColorForEthicalScore(ethicalScore);
-            // button.style.backgroundColor = 'rgba(0, 0, 0, 0)'
             cell.textContent = String(ethicalScore)+footnoteMarker
           }
 
@@ -153,7 +126,6 @@ function displayProteinFoods() {
               sustainabilityScore = sustainabilityData[carbFoodaux].ecologicallySustainable*2
             }
             cell.style.backgroundColor = getColorForEthicalScore(sustainabilityScore);
-            // button.style.backgroundColor = 'rgba(0, 0, 0, 0)'
             cell.textContent = String(sustainabilityScore)+footnoteMarker
           }
 
@@ -168,14 +140,12 @@ function displayProteinFoods() {
               let sustainabilityScore = sustainabilityData[carbFoodaux].ecologicallySustainable*2;
               let salvadorScore = (emissionRatioScore*10 + landuseRatioScore*4 + proteinRatioScore + ethicalScore*2 + sustainabilityScore*2)/4
               cell.style.backgroundColor = getColorForEthicalScore(salvadorScore*4/18);
-              // button.style.backgroundColor = 'rgba(0, 0, 0, 0)'
               cell.textContent = String(salvadorScore)+footnoteMarker
             } else{
               let ethicalScore = sustainabilityData[proteinFood].ethical*sustainabilityData[carbFoodaux].ethical
               let sustainabilityScore = sustainabilityData[proteinFood].ecologicallySustainable*sustainabilityData[carbFoodaux].ecologicallySustainable;
               let salvadorScore = (emissionRatioScore*10 + landuseRatioScore*4 + proteinRatioScore + ethicalScore*2 + sustainabilityScore*2)/4
               cell.style.backgroundColor = getColorForEthicalScore(salvadorScore*4/18);
-              // button.style.backgroundColor = 'rgba(0, 0, 0, 0)'
               cell.textContent = String(salvadorScore)+footnoteMarker
             }
           }

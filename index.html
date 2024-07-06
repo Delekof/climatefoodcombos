@@ -3,6 +3,7 @@
 <head>
   <title>Climate Food Combos</title>
   <script src="data.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -268,9 +269,21 @@
 <!-- Overlay structure -->
 <div id="overlay" class="overlay">
   <div class="overlay-content">
-      <span id="closeOverlayBtn" class="close-btn">&times;</span>
-      <h2 id="overlayTitle">Overlay Title</h2>
-      <p>This is the overlay content.</p>
+    <span id="closeOverlayBtn" class="close-btn">&times;</span>
+    <h2 id="overlayTitle">Overlay Title</h2>
+    <p>This is the overlay content.</p>
+    <div id="chart-container">
+      <div class="chart-wrapper">
+        <canvas id="caloriesPieChart"></canvas>
+      </div>
+      <div class="chart-wrapper">
+        <canvas id="amountsPieChart"></canvas>
+      </div>
+    </div>
+    <div id="legend-container">
+      <div id="legend"></div>
+    </div>
+    <p id="overlay_meal"></p>
   </div>
 </div>
 
@@ -282,6 +295,7 @@
 <script src="calculations.js"></script>
 <script src="presets.js"></script>
 <script src="updates.js"></script>
+<script src="popout.js"></script>
 <script src="script.js"></script>
 </body>
 </html>

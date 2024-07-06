@@ -357,90 +357,178 @@ const nutritional_data = {
   Bread: {
     protein: 9.4, // per 100g cooked
     kcal: 265, // per 100g cooked
+    portion: {
+      grams: 30, // typical portion size in grams
+      description: "slice" // description of the portion
+    }
   },
   Corn: {
-    protein: 9.42, // per 100g cooked
-    kcal: 365, // per 100g cooked
+    protein: 4.4, // per 100g cooked (assuming typical preparation like tortilla)
+    kcal: 200, // per 100g cooked (assuming typical preparation like tortilla)
+    portion: {
+      grams: 32, // typical portion size in grams
+      description: "tortilla" // description of the portion
+    }
   },
   Oats: {
-    protein: 16.89, // per 100g cooked
-    kcal: 389, // per 100g cooked
+    protein: 1.89, // per 100g cooked
+    kcal: 71, // per 100g cooked
+    portion: {
+      grams: 150, // typical portion size in grams
+      description: "cup" // description of the portion
+    }
   },
   Rice: {
     protein: 2.69, // per 100g cooked
     kcal: 130, // per 100g cooked
+    portion: {
+      grams: 150, // typical portion size in grams
+      description: "cup" // description of the portion
+    }
   },
   Potatoes: {
-    protein: 2.02, // per 100g cooked
-    kcal: 77, // per 100g cooked
+    protein: 1.87, // per 100g cooked
+    kcal: 87, // per 100g cooked
+    portion: {
+      grams: 150, // typical portion size in grams
+      description: "medium potatoe" // description of the portion
+    }
   },
   Cassava: {
     protein: 1.36, // per 100g cooked
     kcal: 160, // per 100g cooked
+    portion: {
+      grams: 150, // typical portion size in grams
+      description: "cup" // description of the portion
+    }
   },
   "Mixed Pulses": {
     protein: 7.63, // per 100g cooked
     kcal: 114, // per 100g cooked
+    portion: {
+      grams: 150, // typical portion size in grams
+      description: "cup" // description of the portion
+    }
   },
   Peas: {
-    protein: 8.34, // per 100g cooked
-    kcal: 118, // per 100g cooked
+    protein: 5.42, // per 100g cooked
+    kcal: 80, // per 100g cooked
+    portion: {
+      grams: 160, // typical portion size in grams
+      description: "cup" // description of the portion
+    }
   },
   "Mixed Nuts": {
     protein: 20.99, // per 100g cooked
     kcal: 607, // per 100g cooked
+    portion: {
+      grams: 30, // typical portion size in grams
+      description: "handful" // description of the portion
+    }
   },
   Peanuts: {
-    protein: 25.8, // per 100g cooked
-    kcal: 567, // per 100g cooked
+    protein: 24.35, // per 100g cooked (assuming typical preparation)
+    kcal: 567, // per 100g cooked (assuming typical preparation)
+    portion: {
+      grams: 30, // typical portion size in grams
+      description: "handful" // description of the portion
+    }
   },
   Tofu: {
-    protein: 13, // per 100g cooked
-    kcal: 118, // per 100g cooked
+    protein: 13, // per 100g cooked (assuming firm to extra firm and cooked)
+    kcal: 140, // per 100g cooked (assuming firm to extra firm and cooked)
+    portion: {
+      grams: 200, // typical portion size in grams
+      description: "block" // description of the portion
+    }
   },
   "Beef (dairy herd)": {
-    protein: 26.04, // per 100g cooked
-    kcal: 250, // per 100g cooked
+    protein: 21.57, // per 100g cooked (average of beef types)
+    kcal: 250, // per 100g cooked (average of beef types)
+    portion: {
+      grams: 100, // typical portion size in grams
+      description: "100g unit" // description of the portion
+    }
   },
   "Beef (beef herd)": {
-    protein: 26.04, // per 100g cooked
-    kcal: 250, // per 100g cooked
+    protein: 21.57, // per 100g cooked (average of beef types)
+    kcal: 250, // per 100g cooked (average of beef types)
+    portion: {
+      grams: 100, // typical portion size in grams
+      description: "100g unit" // description of the portion
+    }
   },
-  Lamb: {
-    protein: 25.6, // per 100g cooked
+  "Lamb": {
+    protein: 20.56, // per 100g cooked
     kcal: 282, // per 100g cooked
+    portion: {
+      grams: 100, // typical portion size in grams
+      description: "100g unit" // description of the portion
+    }
   },
-  Pork: {
-    protein: 21.43, // per 100g cooked
+  "Pork": {
+    protein: 21.14, // per 100g cooked
     kcal: 242, // per 100g cooked
+    portion: {
+      grams: 100, // typical portion size in grams
+      description: "100g unit" // description of the portion
+    }
   },
-  Chicken: {
-    protein: 25.98, // per 100g cooked
-    kcal: 239, // per 100g cooked
+  "Chicken": {
+    protein: 25.98, // per 100g cooked (average of chicken types)
+    kcal: 239, // per 100g cooked (average of chicken types)
+    portion: {
+      grams: 100, // typical portion size in grams
+      description: "100g unit" // description of the portion
+    }
   },
   Cheese: {
     protein: 24.99, // per 100g cooked
     kcal: 402, // per 100g cooked
+    portion: {
+      grams: 25, // typical portion size in grams
+      description: "slice" // description of the portion
+    }
   },
   Eggs: {
     protein: 12.58, // per 100g cooked
     kcal: 155, // per 100g cooked
+    portion: {
+      grams: 50, // typical portion size in grams
+      description: "large egg" // description of the portion
+    }
   },
   "Farmed Fish": {
     protein: 18.76, // per 100g cooked
     kcal: 206, // per 100g cooked
+    portion: {
+      grams: 100, // typical portion size in grams
+      description: "100g unit" // description of the portion
+    }
   },
   "Farmed Shrimp": {
     protein: 20.03, // per 100g cooked
     kcal: 83, // per 100g cooked
+    portion: {
+      grams: 100, // typical portion size in grams
+      description: "100g unit" // description of the portion
+    }
   },
   "Quorn vegan pieces*": {
     protein: 15.3, // per 100g cooked
     kcal: 94, // per 100g cooked
+    portion: {
+      grams: 100, // typical portion size in grams
+      description: "100g unit" // description of the portion
+    }
   },
   "Planted chicken*": {
     protein: 24, // per 100g cooked
     kcal: 151, // per 100g cooked
+    portion: {
+      grams: 100, // typical portion size in grams
+      description: "100g unit" // description of the portion
+    }
   },
 };
 
