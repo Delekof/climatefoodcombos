@@ -77,15 +77,24 @@ function updateCharts(carbFood, proteinFood, kappa=kappa) {
     let proteinRatio = calculateProteinRatio(proteinFood, carbFoodaux, kappa)
     let emissionRatio = calculateRatioEmissions(proteinFood, carbFoodaux, proteinRatio);
     
-    const newData1 = [proteinRatio.toFixed(2), (1-proteinRatio).toFixed(2)];
-    const newLabels = [proteinFood, carbFoodaux];
+    const newData1 = [proteinRatio.toFixed(2), (1-proteinRatio).toFixed(2), fruitVegInput.value/(calorieInput.value - emptycalorieInput.value)];
+    const newLabels = [proteinFood, carbFoodaux, "fruit/veg"];
 
-    let totalWeight = proteinRatio/nutritional_data[proteinFood].kcal + (1-proteinRatio)/nutritional_data[carbFoodaux].kcal
-    const newData2 = [((proteinRatio/nutritional_data[proteinFood].kcal)/totalWeight).toFixed(2), (((1-proteinRatio)/nutritional_data[carbFoodaux].kcal)/totalWeight).toFixed(2)];
+    let vegWeight = .4*(fruitVegInput.value/(calorieInput.value - emptycalorieInput.value - fruitVegInput.value))
+    let totalWeight = proteinRatio/nutritional_data[proteinFood].kcal + (1-proteinRatio)/nutritional_data[carbFoodaux].kcal + vegWeight
+    console.log(((proteinRatio/nutritional_data[proteinFood].kcal)/totalWeight).toFixed(2),
+    (((1-proteinRatio)/nutritional_data[carbFoodaux].kcal)/totalWeight).toFixed(2),
+    (vegWeight).toFixed(2),)
+    const newData2 = [
+        ((proteinRatio/nutritional_data[proteinFood].kcal)/totalWeight).toFixed(2),
+        (((1-proteinRatio)/nutritional_data[carbFoodaux].kcal)/totalWeight).toFixed(2),
+        (vegWeight).toFixed(2),
+    ];
 
     const newColors = [
         'rgba(235, 0, 0, 0.2)',
         'rgba(245, 245, 0, 0.3)',
+        'rgba(0, 255, 0, 0.3)',
     ];
 
     // Update first chart data
@@ -106,15 +115,16 @@ function updateCharts(carbFood, proteinFood, kappa=kappa) {
     generateLegend(newLabels, newColors);
 
     //update overlay text
-    let kcal_per_meal = (calorieInput.value - emptycalorieInput.value - fruitVegInput.value)*.375
+    let kcal_per_meal = (calorieInput.value - emptycalorieInput.value)*.375
+    let vegServings = (fruitVegInput.value*.375/4).toFixed(0)
     let proteinServings = kcal_per_meal*100*(proteinRatio/nutritional_data[proteinFood].kcal) / nutritional_data[proteinFood].portion.grams
     let carbServings = kcal_per_meal*100*((1-proteinRatio)/nutritional_data[carbFoodaux].kcal) / nutritional_data[carbFoodaux].portion.grams
     proteinServings = Math.round(proteinServings*2)/2
     carbServings = Math.round(carbServings*2)/2
     if (carbFood == "Self"){
-        document.getElementById('overlay_meal').innerText = `A meal in this combo would be: ${carbServings}x${nutritional_data[carbFoodaux].portion.description}s of ${carbFoodaux} for a total of ${kcal_per_meal.toFixed(0)}kcal`;
+        document.getElementById('overlay_meal').innerText = `A meal in this combo would be: ${carbServings}x${nutritional_data[carbFoodaux].portion.description}s of ${carbFoodaux} and ${vegServings}0g of fruit/veg for a total of ${kcal_per_meal.toFixed(0)}kcal`;
     } else {
-        document.getElementById('overlay_meal').innerText = `A meal in this combo would be: ${proteinServings}x${nutritional_data[proteinFood].portion.description}s of ${proteinFood} with ${carbServings}x${nutritional_data[carbFoodaux].portion.description}s of ${carbFoodaux} for a total of ${kcal_per_meal.toFixed(0)}kcal`;
+        document.getElementById('overlay_meal').innerText = `A meal in this combo would be: ${proteinServings}x${nutritional_data[proteinFood].portion.description}s of ${proteinFood} with ${carbServings}x${nutritional_data[carbFoodaux].portion.description}s of ${carbFoodaux} and ${vegServings}0g of fruit/veg  for a total of ${kcal_per_meal.toFixed(0)}kcal`;
     }
 
     document.getElementById('overlayBalancedBox').style.backgroundColor = getColorForProteinRatio(proteinRatio)[0];
