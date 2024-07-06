@@ -75,6 +75,8 @@ function updateCharts(carbFood, proteinFood, kappa=kappa) {
         carbFoodaux = proteinFood
     }
     let proteinRatio = calculateProteinRatio(proteinFood, carbFoodaux, kappa)
+    let emissionRatio = calculateRatioEmissions(proteinFood, carbFoodaux, proteinRatio);
+    
     const newData1 = [proteinRatio.toFixed(2), (1-proteinRatio).toFixed(2)];
     const newLabels = [proteinFood, carbFoodaux];
 
@@ -114,6 +116,46 @@ function updateCharts(carbFood, proteinFood, kappa=kappa) {
     } else {
         document.getElementById('overlay_meal').innerText = `A meal in this combo would be: ${proteinServings}x${nutritional_data[proteinFood].portion.description}s of ${proteinFood} with ${carbServings}x${nutritional_data[carbFoodaux].portion.description}s of ${carbFoodaux}`;
     }
+
+    document.getElementById('overlayBalancedBox').style.backgroundColor = getColorForProteinRatio(proteinRatio)[0];
+    document.getElementById('overlayBalancedText').innerText = "on meal balance"
+
+    document.getElementById('overlayEmissionsBox').style.backgroundColor = getColorForEmissionRatio(emissionRatio)[0];
+    document.getElementById('overlayEmissionsText').textContent = "on emissions"
+
+    let landuseRatio = calculateRatioLanduse(proteinFood, carbFoodaux, proteinRatio);
+    document.getElementById('overlayLanduseBox').style.backgroundColor = getColorForLanduseRatio(landuseRatio)[0];
+    document.getElementById('overlayLanduseText').textContent = "on land use"
+
+    let ethicalScore = sustainabilityData[proteinFood].ethical*sustainabilityData[carbFoodaux].ethical
+    if (proteinRatio == 0){
+        ethicalScore = sustainabilityData[carbFoodaux].ethical*2
+    }
+    document.getElementById('overlayEthicalBox').style.backgroundColor = getColorForEthicalScore(ethicalScore);
+    document.getElementById('overlayEthicalText').innerText = "on ethics";
+
+    let sustainabilityScore = sustainabilityData[proteinFood].ecologicallySustainable*sustainabilityData[carbFoodaux].ecologicallySustainable;
+    if (proteinRatio == 0){
+        sustainabilityScore = sustainabilityData[carbFoodaux].ecologicallySustainable*2
+    }
+    document.getElementById('overlaySustainableBox').style.backgroundColor = getColorForEthicalScore(sustainabilityScore);
+    document.getElementById('overlaySustainableText').textContent = "on sustainability"
+
+    let emissionRatioScore = getColorForEmissionRatio(emissionRatio)[1];
+    let proteinRatioScore = getColorForProteinRatio(proteinRatio)[1];
+    let landuseRatioScore = getColorForLanduseRatio(landuseRatio)[1];
+    let salvadorScore
+    if (proteinRatio == 0){
+        let ethicalScore = sustainabilityData[carbFoodaux].ethical*2
+        let sustainabilityScore = sustainabilityData[carbFoodaux].ecologicallySustainable*2;
+        salvadorScore = (emissionRatioScore*10 + landuseRatioScore*4 + proteinRatioScore + ethicalScore*2 + sustainabilityScore*2)/4
+    } else{
+        let ethicalScore = sustainabilityData[proteinFood].ethical*sustainabilityData[carbFoodaux].ethical
+        let sustainabilityScore = sustainabilityData[proteinFood].ecologicallySustainable*sustainabilityData[carbFoodaux].ecologicallySustainable;
+        salvadorScore = (emissionRatioScore*10 + landuseRatioScore*4 + proteinRatioScore + ethicalScore*2 + sustainabilityScore*2)/4
+    }
+    document.getElementById('overlaySalvadorscoreBox').style.backgroundColor = getColorForEthicalScore(salvadorScore*4/18);
+    document.getElementById('overlaySalvadorscoreText').textContent = "overall score"
 }
 
 function foodComboPopout(carbFood, proteinFood) {
