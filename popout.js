@@ -112,9 +112,9 @@ function updateCharts(carbFood, proteinFood, kappa=kappa) {
     proteinServings = Math.round(proteinServings*2)/2
     carbServings = Math.round(carbServings*2)/2
     if (carbFood == "Self"){
-        document.getElementById('overlay_meal').innerText = `A meal in this combo would be: ${carbServings}x${nutritional_data[carbFoodaux].portion.description}s of ${carbFoodaux}`;
+        document.getElementById('overlay_meal').innerText = `A meal in this combo would be: ${carbServings}x${nutritional_data[carbFoodaux].portion.description}s of ${carbFoodaux} for a total of ${kcal_per_meal}kcal`;
     } else {
-        document.getElementById('overlay_meal').innerText = `A meal in this combo would be: ${proteinServings}x${nutritional_data[proteinFood].portion.description}s of ${proteinFood} with ${carbServings}x${nutritional_data[carbFoodaux].portion.description}s of ${carbFoodaux}`;
+        document.getElementById('overlay_meal').innerText = `A meal in this combo would be: ${proteinServings}x${nutritional_data[proteinFood].portion.description}s of ${proteinFood} with ${carbServings}x${nutritional_data[carbFoodaux].portion.description}s of ${carbFoodaux} for a total of ${kcal_per_meal}kcal`;
     }
 
     document.getElementById('overlayBalancedBox').style.backgroundColor = getColorForProteinRatio(proteinRatio)[0];
