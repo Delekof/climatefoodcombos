@@ -5,6 +5,13 @@ function updateAverageToUse() {
   updateProteinPerCalorieSupply();
 }
 
+function updatedDefatted() {
+  calculateProteinPerKcal(nutritional_data, document.getElementById('defatted').checked)
+  calculateEmissionsPerKcal(nutritional_data);
+  calculateLandusePerKcal(nutritional_data);
+  updateProteinPerCalorieSupply();
+}
+
 function updateProteinSupply() {
   proteinInput.value = proteinInput.value;
   updateProteinPerCalorieSupply();
@@ -34,6 +41,8 @@ var radioButtons = document.querySelectorAll('input[name="average"]');
 radioButtons.forEach (radio => {
   radio.addEventListener("change", updateAverageToUse)
 });
+
+document.getElementById('defatted').addEventListener("change", updatedDefatted)
 
 proteinInput.onblur = function () {
   updateProteinSupply();

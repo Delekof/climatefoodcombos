@@ -80,12 +80,12 @@ function updateCharts(carbFood, proteinFood, kappa=kappa) {
     const newData1 = [proteinRatio.toFixed(3), (1-proteinRatio).toFixed(3), fruitVegInput.value/(calorieInput.value - emptycalorieInput.value)];
     const newLabels = [proteinFood, carbFoodaux, "fruit/veg"];
 
-    let vegWeight = .4*(fruitVegInput.value/(calorieInput.value - emptycalorieInput.value - fruitVegInput.value))
-    let totalWeight = proteinRatio/nutritional_data[proteinFood].kcal + (1-proteinRatio)/nutritional_data[carbFoodaux].kcal + vegWeight
+    let totalCalories = (calorieInput.value - emptycalorieInput.value - fruitVegInput.value)
+    let vegWeight = (fruitVegInput.value)/.4
     const newData2 = [
-        ((proteinRatio/nutritional_data[proteinFood].kcal)/totalWeight).toFixed(3),
-        (((1-proteinRatio)/nutritional_data[carbFoodaux].kcal)/totalWeight).toFixed(3),
-        (vegWeight).toFixed(3),
+        (100*totalCalories*(proteinRatio/nutritional_data[proteinFood].kcal)).toFixed(0),
+        (100*totalCalories*((1-proteinRatio)/nutritional_data[carbFoodaux].kcal)).toFixed(0),
+        (vegWeight).toFixed(0),
     ];
 
     const newColors = [

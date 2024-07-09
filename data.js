@@ -443,53 +443,77 @@ const nutritional_data = {
     }
   },
   "Beef (dairy herd)": {
-    protein: 21.57, // per 100g cooked (average of beef types)
-    kcal: 250, // per 100g cooked (average of beef types)
-    portion: {
-      grams: 100, // typical portion size in grams
-      description: "100g unit" // description of the portion
+    "protein": 21.57,
+    "kcal": 250,
+    "portion": {
+      "grams": 100,
+      "description": "100g unit"
+    },
+    "defatted": {
+      "protein": 31.93,
+      "kcal": 173,
     }
   },
   "Beef (beef herd)": {
-    protein: 21.57, // per 100g cooked (average of beef types)
-    kcal: 250, // per 100g cooked (average of beef types)
-    portion: {
-      grams: 100, // typical portion size in grams
-      description: "100g unit" // description of the portion
+    "protein": 21.57,
+    "kcal": 250,
+    "portion": {
+      "grams": 100,
+      "description": "100g unit"
+    },
+    "defatted": {
+      "protein": 31.93,
+      "kcal": 173,
     }
   },
   "Lamb": {
-    protein: 20.56, // per 100g cooked
-    kcal: 282, // per 100g cooked
-    portion: {
-      grams: 100, // typical portion size in grams
-      description: "100g unit" // description of the portion
+    "protein": 20.56,
+    "kcal": 282,
+    "portion": {
+      "grams": 100,
+      "description": "100g unit"
+    },
+    "defatted": {
+      "protein": 29.88,
+      "kcal": 178,
     }
   },
   "Pork": {
-    protein: 21.14, // per 100g cooked
-    kcal: 242, // per 100g cooked
-    portion: {
-      grams: 100, // typical portion size in grams
-      description: "100g unit" // description of the portion
+    "protein": 21.14,
+    "kcal": 242,
+    "portion": {
+      "grams": 100,
+      "description": "100g unit"
+    },
+    "defatted": {
+      "protein": 30.45,
+      "kcal": 169,
     }
   },
   "Chicken": {
-    protein: 25.98, // per 100g cooked (average of chicken types)
-    kcal: 239, // per 100g cooked (average of chicken types)
-    portion: {
-      grams: 100, // typical portion size in grams
-      description: "100g unit" // description of the portion
+    "protein": 25.98,
+    "kcal": 239,
+    "portion": {
+      "grams": 100,
+      "description": "100g unit"
+    },
+    "defatted": {
+      "protein": 32.55,
+      "kcal": 150,
     }
   },
-  Cheese: {
-    protein: 24.99, // per 100g cooked
-    kcal: 402, // per 100g cooked
-    portion: {
-      grams: 25, // typical portion size in grams
-      description: "slice" // description of the portion
+  "Cheese": {
+    "protein": 24.99,
+    "kcal": 402,
+    "portion": {
+      "grams": 25,
+      "description": "slice"
+    },
+    "defatted": {
+      "protein": 13,
+      "kcal": 94,
     }
-  },
+  },  
   Eggs: {
     protein: 12.58, // per 100g cooked
     kcal: 155, // per 100g cooked
