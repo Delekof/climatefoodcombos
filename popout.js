@@ -77,6 +77,10 @@ function updateCharts(carbFood, proteinFood, kappa=kappa) {
     let proteinRatio = calculateProteinRatio(proteinFood, carbFoodaux, kappa)
     let emissionRatio = calculateRatioEmissions(proteinFood, carbFoodaux, proteinRatio);
     
+    if (carbFood =="Self") {
+        proteinRatio = 1
+    }
+
     const newData1 = [proteinRatio.toFixed(3), (1-proteinRatio).toFixed(3), fruitVegInput.value/(calorieInput.value - emptycalorieInput.value)];
     const newLabels = [proteinFood, carbFoodaux, "fruit/veg"];
 

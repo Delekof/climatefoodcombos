@@ -63,7 +63,11 @@ function displayProteinFoods() {
         let cell = row.insertCell(carbIndex + 1);
         cell.addEventListener('click', () => {
           foodComboPopout(carbFood, proteinFood);
-          document.getElementById('overlayTitle').innerText = `${carbFood} with ${proteinFood}`;
+          if (carbFood == "Self"){
+            document.getElementById('overlayTitle').innerText = `${proteinFood} by itself`;
+          } else {
+            document.getElementById('overlayTitle').innerText = `${proteinFood} with ${carbFood}`;
+          };
           document.getElementById('overlay').style.display = 'flex';
         });
 
