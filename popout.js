@@ -116,8 +116,8 @@ function updateCharts(carbFood, proteinFood, kappa=kappa) {
     let vegServings = (fruitVegInput.value*.375/4).toFixed(0)
     let proteinServings = kcal_per_meal*100*(proteinRatio/nutritional_data[proteinFood].kcal) / nutritional_data[proteinFood].portion.grams
     let carbServings = kcal_per_meal*100*((1-proteinRatio)/nutritional_data[carbFoodaux].kcal) / nutritional_data[carbFoodaux].portion.grams
-    proteinServings = Math.round(proteinServings*2)/2
-    carbServings = Math.round(carbServings*2)/2
+    proteinServings = Math.round(proteinServings*5)/5
+    carbServings = Math.round(carbServings*5)/5
     if (carbFood == "Self"){
         document.getElementById('overlay_meal').innerText = `A meal in this combo would be: ${carbServings}x${nutritional_data[carbFoodaux].portion.description}s of ${carbFoodaux} and ${vegServings}0g of fruit/veg for a total of ${kcal_per_meal.toFixed(0)}kcal`;
     } else {
